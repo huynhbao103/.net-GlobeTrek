@@ -1,0 +1,289 @@
+﻿@model IEnumerable<GlobeTrek.Models.Order>
+
+@{
+    ViewBag.Title = "Đơn Hàng Của Tôi";
+    Layout = "~/Views/Shared/_headerLayout.cshtml";
+}
+
+<div class="container mt-5 mb-5 p-5" style="min-height: 500px;">
+    <h2 class="mb-4 mt-5 text-success">Đơn Hàng Của Tôi</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-success text-center mt-5" role="alert">
+            <h4 class="alert-heading">Không có đơn hàng nào</h4>
+            <p>Bạn chưa đặt đơn hàng nào. Hãy bắt đầu đặt tour ngay!</p>
+            <a href="@Url.Action("GetAllTours", "getAllTour")" class="btn btn-success mt-2">Đặt Tour Ngay</a>
+        </div>
+    }
+    else
+    {
+        <!-- Filter Bar -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Tìm kiếm theo Tour ID</label>
+                        <input type="number" id="filterTourId" class="form-control" placeholder="Nhập Tour ID">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Trạng thái</label>
+                        <select id="filterStatus" class="form-select">
+                            <option value="">Tất cả</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Ngày đặt từ</label>
+                        <input type="date" id="filterDateFrom" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Ngày đặt đến</label>
+                        <input type="date" id="filterDateTo" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="table-responsive">
+            <table class="table table-striped table-hover shadow-sm" id="ordersTable">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th class="sortable" data-sort="id">Mã Đơn Hàng <i class="bi bi-arrow-down-up"></i></th>
+                        <th class="sortable" data-sort="tourId">Tour ID <i class="bi bi-arrow-down-up"></i></th>
+                        <th>Số Người Lớn</th>
+                        <th>Số Trẻ Em</th>
+                        <th class="sortable" data-sort="totalValue">Tổng Giá <i class="bi bi-arrow-down-up"></i></th>
+                        <th class="sortable" data-sort="createdAt">Ngày Đặt <i class="bi bi-arrow-down-up"></i></th>
+                        <th>Ngày Đi</th>
+                        <th>Phương Thức Thanh Toán</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTbody">
+                    @foreach (var order in Model)
+                    {
+                        <tr data-order-id="@order.id">
+                            <td>@order.id</td>
+                            <td>@order.tourId</td>
+                            <td>@order.adultCount</td>
+                            <td>@order.childCount</td>
+                            <td>@(order.totalValue.ToString("N2") + " VND")</td>
+                            <td>@order.createdAt</td>
+                            <td>@order.bookingDate.ToString("dd/MM/yyyy")</td>
+                            <td>@order.paymentMethod</td>
+                            <td>
+                                <span class="badge @(order.status == "Pending" ? "bg-warning" : order.status == "Confirmed" ? "bg-success" : "bg-danger")" id="status-@order.id">
+                                    @order.status
+                                </span>
+                            </td>
+                            <td class="d-flex flex-row justify-content-center align-items-center"  >
+                                <button class="btn btn-sm btn-outline-primary toggle-details" data-bs-toggle="collapse" data-bs-target="#details-@order.id">
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+                                @if (order.status == "Pending")
+                                {
+                                    <button class="btn btn-sm btn-danger cancel-order ms-2" data-order-id="@order.id">Hủy</button>
+                                    <button class="btn btn-sm btn-success pay-order ms-2 " data-order-id="@order.id">Thanh Toán</button>
+                                }
+                            </td>
+                        </tr>
+                        <tr class="collapse" id="details-@order.id">
+                            <td colspan="10">
+                                <div class="p-3 bg-light">
+                                    <h6>Chi Tiết Đơn Hàng #@order.id</h6>
+                                    <p><strong>Giá Người Lớn:</strong> @(order.adultPrice.ToString("N2") + " VND") x @order.adultCount = @((order.adultPrice * order.adultCount).ToString("N2") + " VND")</p>
+                                    <p><strong>Giá Trẻ Em:</strong> @(order.childPrice.ToString("N2") + " VND") x @order.childCount = @((order.childPrice * order.childCount).ToString("N2") + " VND")</p>
+                                    <p><strong>Tổng Giá:</strong> @(order.totalValue.ToString("N2") + " VND")</p>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center" id="pagination">
+                <!-- Pagination items will be generated by JavaScript -->
+            </ul>
+        </nav>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const rowsPerPage = 5;
+            let currentPage = 1;
+            let allRows = $('#ordersTbody tr:not(.collapse)').toArray();
+
+            function displayPage(page) {
+                const start = (page - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+                $('#ordersTbody tr:not(.collapse)').hide();
+                allRows.slice(start, end).forEach(row => $(row).show());
+            }
+
+            function setupPagination(filteredRows) {
+                const pageCount = Math.ceil(filteredRows.length / rowsPerPage);
+                $('#pagination').empty();
+
+                $('#pagination').append(`
+                    <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
+                    </li>
+                `);
+
+                for (let i = 1; i <= pageCount; i++) {
+                    $('#pagination').append(`
+                        <li class="page-item ${i === currentPage ? 'active' : ''}">
+                            <a class="page-link" href="#" data-page="${i}">${i}</a>
+                        </li>
+                    `);
+                }
+
+                $('#pagination').append(`
+                    <li class="page-item ${currentPage === pageCount ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
+                    </li>
+                `);
+
+                displayPage(currentPage);
+            }
+
+            $('#pagination').on('click', 'a.page-link', function (e) {
+                e.preventDefault();
+                const page = parseInt($(this).data('page'));
+                if (page >= 1 && page <= Math.ceil(allRows.length / rowsPerPage)) {
+                    currentPage = page;
+                    displayPage(currentPage);
+                    setupPagination(allRows);
+                }
+            });
+
+            function filterOrders() {
+                var tourId = $('#filterTourId').val().toLowerCase();
+                var status = $('#filterStatus').val().toLowerCase();
+                var dateFrom = $('#filterDateFrom').val() ? new Date($('#filterDateFrom').val()) : null;
+                var dateTo = $('#filterDateTo').val() ? new Date($('#filterDateTo').val()) : null;
+
+                allRows = $('#ordersTbody tr:not(.collapse)').toArray().filter(function (row) {
+                    var $row = $(row);
+                    var rowTourId = $row.find('td:eq(1)').text().toLowerCase();
+                    var rowStatus = $row.find('td:eq(8) span').text().toLowerCase();
+                    var rowDate = new Date($row.find('td:eq(5)').text().split(' ')[0].split('/').reverse().join('-'));
+
+                    var show = true;
+                    if (tourId && !rowTourId.includes(tourId)) show = false;
+                    if (status && rowStatus !== status) show = false;
+                    if (dateFrom && rowDate < dateFrom) show = false;
+                    if (dateTo && rowDate > dateTo) show = false;
+
+                    return show;
+                });
+
+                currentPage = 1;
+                setupPagination(allRows);
+            }
+
+            $('#filterTourId, #filterStatus, #filterDateFrom, #filterDateTo').on('input change', filterOrders);
+
+            $('.sortable').on('click', function () {
+                var $th = $(this);
+                var column = $th.data('sort');
+                var isAsc = $th.hasClass('asc');
+
+                allRows.sort(function (a, b) {
+                    var aVal = $(a).find(`td:eq(${['id', 'tourId', 'totalValue', 'createdAt'].indexOf(column)})`).text();
+                    var bVal = $(b).find(`td:eq(${['id', 'tourId', 'totalValue', 'createdAt'].indexOf(column)})`).text();
+
+                    if (column === 'totalValue') {
+                        aVal = parseFloat(aVal.replace(' VND', ''));
+                        bVal = parseFloat(bVal.replace(' VND', ''));
+                    } else if (column === 'createdAt') {
+                        aVal = new Date(aVal.split(' ')[0].split('/').reverse().join('-'));
+                        bVal = new Date(bVal.split(' ')[0].split('/').reverse().join('-'));
+                    } else {
+                        aVal = parseInt(aVal);
+                        bVal = parseInt(bVal);
+                    }
+
+                    return isAsc ? aVal - bVal : bVal - aVal;
+                });
+
+                $('.sortable').removeClass('asc desc');
+                $th.addClass(isAsc ? 'desc' : 'asc');
+                $('#ordersTbody').empty().append(allRows);
+                currentPage = 1;
+                setupPagination(allRows);
+            });
+
+            $('.toggle-details').on('click', function () {
+                var $icon = $(this).find('i');
+                $icon.toggleClass('bi-chevron-down bi-chevron-up');
+            });
+
+            // Xử lý hủy đơn hàng
+            $('.cancel-order').on('click', function () {
+                var $button = $(this);
+                var orderId = $button.data('order-id');
+
+                if (confirm('Bạn có chắc muốn hủy đơn hàng này không?')) {
+                    $.ajax({
+                        url: '@Url.Action("CancelOrder", "Orders")',
+                        type: 'POST',
+                        data: { orderId: orderId },
+                        success: function (response) {
+                            if (response.success) {
+                                alert(response.message);
+                                var $statusBadge = $('#status-' + orderId);
+                                $statusBadge.removeClass('bg-warning').addClass('bg-danger').text(response.newStatus);
+                                $button.remove();
+                            } else {
+                                alert(response.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert('Có lỗi xảy ra khi hủy đơn hàng. Vui lòng thử lại.');
+                            console.error('Error details:', xhr.responseText);
+                        }
+                    });
+                }
+            });
+
+            // Xử lý thanh toán
+            $('.pay-order').on('click', function () {
+                var $button = $(this);
+                var orderId = $button.data('order-id');
+
+                if (confirm('Bạn có chắc muốn thanh toán đơn hàng này qua MoMo không?')) {
+                    $.ajax({
+                        url: '@Url.Action("PayOrder", "Orders")',
+                        type: 'POST',
+                        data: { orderId: orderId },
+                        success: function (response) {
+                            if (response.success) {
+                                // Chuyển hướng đến URL thanh toán MoMo
+                                window.location.href = response.paymentUrl;
+                            } else {
+                                alert(response.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert('Có lỗi xảy ra khi tạo thanh toán MoMo. Vui lòng thử lại.');
+                            console.error('Error details:', xhr.responseText);
+                        }
+                    });
+                }
+            });
+
+            setupPagination(allRows);
+        });
+    </script>
+}

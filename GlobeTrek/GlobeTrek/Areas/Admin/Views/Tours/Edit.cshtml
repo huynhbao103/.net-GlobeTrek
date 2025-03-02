@@ -1,0 +1,157 @@
+﻿@model GlobeTrek.Models.Tour
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chỉnh sửa Tour</h2>
+
+@using (Html.BeginForm("Edit", "Tours", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-container">
+        <h4>Thông tin Tour</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, "Tên Tour")
+            @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, "Mô tả")
+            @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = "3", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.price, "Giá Người Lớn")
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.01", required = "required" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.location, "Địa điểm")
+            @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.duration, "Số ngày")
+            <input id="duration" type="number" name="duration" class="form-control" min="1" value="@Model.duration" required />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tourTypeId, "Loại Tour")
+            @Html.DropDownList("tourTypeId", ViewBag.tourTypes as SelectList, "Chọn loại tour", new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.destinationId, "Điểm đến")
+            @Html.DropDownList("destinationId", ViewBag.destinations as SelectList, "Chọn điểm đến", new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <label>Ảnh hiện tại:</label>
+            <br />
+            @if (!string.IsNullOrEmpty(Model.imageUrls))
+            {
+                <img src="@Model.imageUrls" alt="Tour Image" style="width: 150px; height: auto;" />
+            }
+            <input type="file" name="image" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Video hiện tại:</label>
+            <br />
+            @if (!string.IsNullOrEmpty(Model.videoUrls))
+            {
+                <video width="300" controls>
+                    <source src="@Model.videoUrls" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            }
+            <input type="file" name="video" class="form-control" />
+        </div>
+
+        <h4>Số ghế trống</h4>
+        <div>
+            <button type="button" class="btn btn-info" onclick="generateAvailability()">Tự động điền</button>
+            <button type="button" class="btn btn-success" onclick="addManualAvailability()">Thêm thủ công</button>
+        </div>
+        <div id="availability-container">
+            @foreach (var availability in Model.TourAvailabilities)
+            {
+                <div class="form-group availability-item">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Ngày:</label>
+                            <input type="date" name="availabilities[0].date" class="form-control" value="@availability.date.ToString("yyyy-MM-dd")" required />
+                        </div>
+                        <div class="col-md-5">
+                            <label>Số ghế trống:</label>
+                            <input type="number" name="availabilities[0].availableSeats" class="form-control" value="@availability.availableSeats" required />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger" onclick="removeAvailability(this)">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Cập nhật Tour" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<script>
+    function generateAvailability() {
+        let container = document.getElementById("availability-container");
+        container.innerHTML = "";
+        let duration = parseInt(document.getElementById("duration").value) || 0;
+        if (duration < 1) {
+            alert("Vui lòng nhập số ngày hợp lệ!");
+            return;
+        }
+
+        let today = new Date();
+        for (let i = 0; i < duration; i++) {
+            addAvailability(today, i);
+        }
+    }
+
+    function addManualAvailability() {
+        let today = new Date();
+        addAvailability(today);
+    }
+
+    function addAvailability(startDate, index = null) {
+        let container = document.getElementById("availability-container");
+        let date = new Date(startDate);
+        date.setDate(date.getDate() + (index !== null ? index : 0));
+
+        let newItem = document.createElement("div");
+        newItem.className = "form-group availability-item";
+        newItem.innerHTML = `
+            <div class="row">
+                <div class="col-md-5">
+                    <label>Ngày:</label>
+                    <input type="date" name="availabilities[${container.children.length}].date" class="form-control" value="${date.toISOString().split('T')[0]}" min="${new Date().toISOString().split('T')[0]}" required />
+                </div>
+                <div class="col-md-5">
+                    <label>Số ghế trống:</label>
+                    <input type="number" name="availabilities[${container.children.length}].availableSeats" class="form-control" placeholder="Nhập số ghế trống" required />
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger" onclick="removeAvailability(this)">Xóa</button>
+                </div>
+            </div>
+        `;
+        container.appendChild(newItem);
+    }
+
+    function removeAvailability(button) {
+        button.closest(".availability-item").remove();
+    }
+</script>

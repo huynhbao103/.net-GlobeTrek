@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GlobeTrek.Models.TourType>
+
+@{
+    ViewBag.Title = "Manage Tour Types";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="mb-4">Thêm loại tour </h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Thêm mới ", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.name)</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.name)</td>
+                <td class="text-center">
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.id }, new { @class = "btn btn-sm btn-warning" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.id }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

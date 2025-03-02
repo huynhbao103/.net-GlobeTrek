@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TravelDBModelStoreContainer" CdmEntityContainer="TravelDBEntities">
+    <EntitySetMapping Name="CustomerInfoes">
+      <EntityTypeMapping TypeName="TravelDBModel.CustomerInfo">
+        <MappingFragment StoreEntitySet="CustomerInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Destinations">
+      <EntityTypeMapping TypeName="TravelDBModel.Destination">
+        <MappingFragment StoreEntitySet="Destinations">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FavoriteTours">
+      <EntityTypeMapping TypeName="TravelDBModel.FavoriteTour">
+        <MappingFragment StoreEntitySet="FavoriteTours">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="tourId" ColumnName="tourId" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="TravelDBModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="tourId" ColumnName="tourId" />
+          <ScalarProperty Name="adultPrice" ColumnName="adultPrice" />
+          <ScalarProperty Name="childPrice" ColumnName="childPrice" />
+          <ScalarProperty Name="adultCount" ColumnName="adultCount" />
+          <ScalarProperty Name="childCount" ColumnName="childCount" />
+          <ScalarProperty Name="totalValue" ColumnName="totalValue" />
+          <ScalarProperty Name="bookingDate" ColumnName="bookingDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Revenues">
+      <EntityTypeMapping TypeName="TravelDBModel.Revenue">
+        <MappingFragment StoreEntitySet="Revenue">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="totalSales" ColumnName="totalSales" />
+          <ScalarProperty Name="totalOrders" ColumnName="totalOrders" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TravelDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TourAvailabilities">
+      <EntityTypeMapping TypeName="TravelDBModel.TourAvailability">
+        <MappingFragment StoreEntitySet="TourAvailabilities">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tourId" ColumnName="tourId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="availableSeats" ColumnName="availableSeats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tours">
+      <EntityTypeMapping TypeName="TravelDBModel.Tour">
+        <MappingFragment StoreEntitySet="Tours">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="specialAdultPrice" ColumnName="specialAdultPrice" />
+          <ScalarProperty Name="childPrice" ColumnName="childPrice" />
+          <ScalarProperty Name="specialChildPrice" ColumnName="specialChildPrice" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="isDisabled" ColumnName="isDisabled" />
+          <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="deletionRequested" ColumnName="deletionRequested" />
+          <ScalarProperty Name="tourTypeId" ColumnName="tourTypeId" />
+          <ScalarProperty Name="destinationId" ColumnName="destinationId" />
+          <ScalarProperty Name="imageUrls" ColumnName="imageUrls" />
+          <ScalarProperty Name="videoUrls" ColumnName="videoUrls" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TourTypes">
+      <EntityTypeMapping TypeName="TravelDBModel.TourType">
+        <MappingFragment StoreEntitySet="TourTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TravelDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

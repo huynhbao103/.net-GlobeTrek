@@ -1,0 +1,223 @@
+﻿@model IEnumerable<GlobeTrek.Models.Order>
+
+@{
+    ViewBag.Title = "Quản Lý Đơn Hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <!-- Tiêu đề -->
+    <div class="row mb-4 align-items-center">
+        <div class="col">
+            <h2 class="text-primary mb-0 fw-bold">Quản Lý Đơn Hàng</h2>
+            <small class="text-muted">Theo dõi và quản lý tất cả đơn hàng</small>
+        </div>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body p-4">
+            <!-- Bộ lọc tìm kiếm -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        <input type="text"
+                               id="filterCreatedAt"
+                               class="form-control"
+                               placeholder="Ngày tạo (dd/MM/yyyy)">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
+                        <input type="text"
+                               id="filterBookingDate"
+                               class="form-control"
+                               placeholder="Ngày đặt (dd/MM/yyyy)">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <input type="text"
+                               id="filterTour"
+                               class="form-control"
+                               placeholder="Tìm theo tour">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text"
+                               id="filterUsername"
+                               class="form-control"
+                               placeholder="Tìm theo người dùng">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <select id="filterStatus" class="form-select">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Bảng dữ liệu -->
+            <div class="table-responsive rounded">
+                <table id="orderTable" class="table table-hover table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.createdAt)</th>
+                            <th>Giá</th>
+                            <th>Số Lượng</th>
+                            <th>@Html.DisplayNameFor(model => model.totalValue)</th>
+                            <th>@Html.DisplayNameFor(model => model.bookingDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.paymentMethod)</th>
+                            <th>@Html.DisplayNameFor(model => model.updatedAt)</th>
+                            <th>@Html.DisplayNameFor(model => model.Tour.title)</th>
+                            <th>@Html.DisplayNameFor(model => model.User.username)</th>
+                            <th>@Html.DisplayNameFor(model => model.status)</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.createdAt</td>
+                                <td>
+                                    <div>Người lớn: <span class="fw-semibold text-primary">@String.Format("{0:N0}", item.adultPrice) Đ</span></div>
+                                    <div>Trẻ em: <span class="fw-semibold text-primary">@String.Format("{0:N0}", item.childPrice) Đ</span></div>
+                                </td>
+                                <td>
+                                    <div>Người lớn: <span class="fw-semibold">@item.adultCount</span></div>
+                                    <div>Trẻ em: <span class="fw-semibold">@item.childCount</span></div>
+                                </td>
+                                <td class="fw-bold text-success">
+                                    @String.Format("{0:N0}", item.totalValue) Đ
+                                </td>
+                                <td>@item.bookingDate.ToString("dd/MM/yyyy")</td>
+                                <td>@item.paymentMethod</td>
+                                <td>@item.updatedAt</td>
+                                <td>@item.Tour.title</td>
+                                <td>@item.User.username</td>
+                                <td>
+                                    <span class="badge w-100 py-2 @(item.status == "Completed" ? "bg-success" :
+                                                                   item.status == "Pending" ? "bg-warning" :
+                                                                   "bg-danger")">
+                                        @item.status
+                                    </span>
+                                </td>
+                             
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* Tùy chỉnh phân trang */
+        .dataTables_paginate .pagination {
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .dataTables_paginate .page-item {
+            margin: 0 5px;
+        }
+
+        .dataTables_paginate .page-link {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dee2e6;
+            color: #007bff;
+            transition: all 0.3s ease;
+        }
+
+            .dataTables_paginate .page-link:hover {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+
+        .dataTables_paginate .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .dataTables_paginate .page-item.disabled .page-link {
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Tinh chỉnh khoảng cách và layout */
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 15px;
+        }
+
+            .dataTables_wrapper .dataTables_filter input {
+                border-radius: 20px;
+                padding: 6px 12px;
+            }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#orderTable').DataTable({
+                order: [[0, 'desc']],
+                pageLength: 10,
+                language: {
+                    search: '<i class="fas fa-search me-2"></i>Tìm kiếm:',
+                    lengthMenu: 'Hiển thị _MENU_ đơn hàng/trang',
+                    info: 'Hiển thị _START_ - _END_ / _TOTAL_ đơn hàng',
+                    paginate: {
+                        previous: '<i class="fas fa-chevron-left"></i>',
+                        next: '<i class="fas fa-chevron-right"></i>'
+                    },
+                    emptyTable: 'Chưa có dữ liệu đơn hàng'
+                },
+                pagingType: 'simple_numbers', // Sử dụng kiểu phân trang đơn giản với nút Previous/Next
+                renderer: 'bootstrap', // Sử dụng renderer của Bootstrap
+                dom: '<"row align-items-center"<"col-md-6"l><"col-md-6"f>>t<"row"<"col-md-6"i><"col-md-6"p>>'
+            });
+
+            // Bộ lọc
+            $('#filterCreatedAt').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
+
+            $('#filterBookingDate').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+
+            $('#filterTour').on('keyup', function () {
+                table.column(7).search(this.value).draw();
+            });
+
+            $('#filterUsername').on('keyup', function () {
+                table.column(8).search(this.value).draw();
+            });
+
+            $('#filterStatus').on('change', function () {
+                table.column(9).search(this.value).draw();
+            });
+        });
+    </script>
+}

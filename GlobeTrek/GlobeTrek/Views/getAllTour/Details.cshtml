@@ -1,0 +1,298 @@
+﻿@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Chi Tiết Tour";
+    Layout = "~/Views/Shared/_headerLayout.cshtml"; // Giả sử layout này đã tồn tại
+}
+
+@{
+    var availableDates = ViewBag.AvailableDates as List<GlobeTrek.Models.TourAvailability>;
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+
+<div class="background-container">
+    <div class="background-cover d-flex align-items-center">
+        <div class="container text-white mt-5">
+
+            <h2>@Model.title</h2>
+            <p><i class="fas fa-map-marker-alt">🧷</i> @Model.Destination.name</p>
+            <p><i class="fas fa-clock">🕐</i> Thời gian tour | @Model.duration ngày</p>
+            <button class="btn btn-success add-favorite" data-tour-id="@Model.id">
+                <i class="fas fa-heart me-1"></i>Thêm vào yêu thích
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Video -->
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.videoUrls))
+            {
+                <video class="w-100 rounded-lg shadow" controls>
+                    <source src="@Model.videoUrls" type="video/mp4" />
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            }
+            else
+            {
+                <p class="text-danger">Chưa có video</p>
+            }
+        </div>
+
+        <!-- Images -->
+        <div class="col-md-6">
+            <div class="row">
+                @if (!string.IsNullOrEmpty(Model.imageUrls))
+                {
+                    <img src="@Model.imageUrls" class="tour-image w-100 rounded-lg shadow" />
+                }
+                else
+                {
+                    <p class="no-image text-center">Chưa có ảnh</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="rating-box">
+                    <h2 class="text-success">9.2</h2>
+                    <p class="text-muted">Tốt từ 26 đánh giá</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="rating-box">
+                    <p><i class="bi bi-geo-alt"></i> <strong>Xem bản đồ</strong></p>
+                    <p class="text-muted">@Model.Destination.name</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="rating-box bg-light">
+                    <p class="text-muted">Bắt đầu từ</p>
+                    <h3 class="text-success">@Model.price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VND</h3>
+                    <button class="btn btn-success">Tìm tour</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4 highlight-box">
+            <h5>Bạn sẽ trải nghiệm</h5>
+            <p class="text-muted">@Model.description</p>
+        </div>
+
+        <!-- Lịch trình tour -->
+        <div class="swiper mySwiper my-4">
+            <div class="swiper-wrapper">
+                @if (availableDates != null && availableDates.Any())
+                {
+                    foreach (var availability in availableDates)
+                    {
+                        <div class="swiper-slide date-box" style="cursor: pointer;" onclick="selectDate(this, '@availability.date.ToString("yyyy-MM-dd")')">
+                            <div class="border p-3 shadow-sm rounded bg-white text-center">
+                                <h5>@availability.date.ToString("dd/MM/yyyy")</h5>
+                                <p>Số ghế trống: <strong>@availability.availableSeats</strong></p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="swiper-slide">
+                        <div class="border p-3 shadow-sm rounded bg-white text-center">
+                            <p>Không có ngày nào còn chỗ trống.</p>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+        <!-- Giá vé -->
+        <div class="card p-3">
+            <h5 class="card-title">Giá Tour</h5>
+            <hr>
+            <div class="d-flex flex-row justify-content-between align-items-center fw-bold">
+                <p>Người lớn: <span id="adultPrice">@Model.price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VND</span></p>
+                <p>Trẻ em: <span id="childPrice">@Model.childPrice.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VND</span></p>
+                <a id="bookTourBtn" class="btn btn-success disabled" href="@Url.Action("Booking", "getAllTour", new { id = @Model.id })">
+                    Đặt Tour
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .background-container {
+        position: relative;
+        height: 250px;
+        background: linear-gradient(to bottom, rgba(47, 138, 84, 0.8) 6%, rgba(47, 138, 84, 1) 40%, rgba(1, 50, 55, 0.7) 100%);
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+    }
+
+    .background-cover {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 40px;
+    }
+
+    .shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .rating-box {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .highlight-box {
+        background-color: rgba(174, 249, 231, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .date-box.selected {
+        background-color: #b2f2bb !important;
+        border: 2px solid #51cf66;
+        transition: background-color 0.3s ease, border 0.3s ease;
+    }
+</style>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    @Html.AntiForgeryToken()
+
+    <script>
+        function isSpecialDay(dateStr) {
+            let date = new Date(dateStr);
+            let dayOfWeek = date.getDay();
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+
+            let vietnameseHolidays = [
+                { day: 1, month: 1 },
+                { day: 30, month: 4 },
+                { day: 2, month: 9 },
+            ];
+
+            return (
+                dayOfWeek === 0 || dayOfWeek === 6 ||
+                vietnameseHolidays.some(holiday => holiday.day === day && holiday.month === month)
+            );
+        }
+
+        window.onload = function () {
+            localStorage.removeItem("selectedTourDate");
+            localStorage.removeItem("selectedAdultPrice");
+            localStorage.removeItem("selectedChildPrice");
+
+            document.getElementById("adultPrice").innerText = "Vui lòng chọn ngày";
+            document.getElementById("childPrice").innerText = "Vui lòng chọn ngày";
+
+            disableBookingButton();
+        };
+
+        function disableBookingButton() {
+            const bookTourBtn = document.getElementById("bookTourBtn");
+            let selectedDate = localStorage.getItem("selectedTourDate");
+
+            if (!selectedDate) {
+                bookTourBtn.classList.add("disabled");
+                bookTourBtn.removeAttribute("href");
+            } else {
+                bookTourBtn.classList.remove("disabled");
+                bookTourBtn.setAttribute("href", "@Url.Action("Booking", "getAllTour", new { id = @Model.id })");
+            }
+        }
+
+        function selectDate(element, date) {
+            document.querySelectorAll(".date-box").forEach(el => el.classList.remove("selected"));
+            element.classList.add("selected");
+
+            let isSpecial = isSpecialDay(date);
+            let normalAdultPrice = parseFloat(@Model.price);
+            let normalChildPrice = parseFloat(@Model.childPrice);
+            let specialAdultPrice = parseFloat(@Model.specialAdultPrice ?? Model.price);
+            let specialChildPrice = parseFloat(@Model.specialChildPrice ?? Model.childPrice);
+
+            let selectedAdultPrice = isSpecial ? specialAdultPrice : normalAdultPrice;
+            let selectedChildPrice = isSpecial ? specialChildPrice : normalChildPrice;
+
+            document.getElementById("adultPrice").innerText = selectedAdultPrice.toLocaleString("vi-VN") + " VND";
+            document.getElementById("childPrice").innerText = selectedChildPrice.toLocaleString("vi-VN") + " VND";
+
+            localStorage.setItem("selectedTourDate", date);
+            localStorage.setItem("selectedAdultPrice", selectedAdultPrice);
+            localStorage.setItem("selectedChildPrice", selectedChildPrice);
+
+            disableBookingButton();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("bookTourBtn").addEventListener("click", function (event) {
+                let selectedDate = localStorage.getItem("selectedTourDate");
+                if (!selectedDate) {
+                    event.preventDefault();
+                    alert("Vui lòng chọn ngày đi để tiếp tục!");
+                }
+            });
+
+            // Xử lý thêm tour yêu thích
+            $('.add-favorite').on('click', function () {
+                var tourId = $(this).data('tour-id');
+                $.ajax({
+                    url: '@Url.Action("AddFavorite", "getAllTour")', // Sửa URL để trỏ đến getAllTourController
+                    type: 'POST',
+                    data: {
+                        tourId: tourId,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire('Thành công', response.message, 'success');
+                        } else {
+                            Swal.fire('Lỗi', response.message, 'error');
+                        }
+                    },
+                    error: function () {
+                        Swal.fire('Lỗi', 'Có lỗi xảy ra khi thêm tour.', 'error');
+                    }
+                });
+            });
+        });
+
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: ".swiper-button-prev",
+                prevEl: ".swiper-button-next",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                480: {
+                    slidesPerView: 1,
+                }
+            }
+        });
+    </script>
+}

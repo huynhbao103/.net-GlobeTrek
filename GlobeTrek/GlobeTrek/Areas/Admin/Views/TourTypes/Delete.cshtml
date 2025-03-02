@@ -1,0 +1,25 @@
+﻿@model GlobeTrek.Models.TourType
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-danger">Xóa Loại Tour</h2>
+    <p class="alert alert-warning">Bạn có chắc muốn xóa loại tour này ?</p>
+
+    <div class="card p-4 mb-3 shadow-sm">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.name)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.name)</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Hủy</a>
+        }
+    </div>
+</div>

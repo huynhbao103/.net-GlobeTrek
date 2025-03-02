@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GlobeTrek.Models.Tour>
+
+@{
+    Layout = "~/Views/Shared/_headerLayout.cshtml";
+}
+
+<div class=" container-fluid py-5 position-relative" style="background-color: rgba(174, 249, 231, 0.2);">
+    <div class="container">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+        <h1 class="fw-bold display-5 mb-4">Tour</h1>
+
+        <!-- Hình ảnh -->
+        <div class="position-relative d-flex justify-content-center mt-4">
+            <img class="img-fluid rounded" style="width: 100%; height: 400px; object-fit: cover;"
+                 src="~/Content/Images/imgtopbody.png" alt="Tour">
+
+            <!-- Thanh tìm kiếm (đặt vị trí tuyệt đối) -->
+            <div class="position-absolute top-100 start-50 translate-middle w-75">
+                <div class="input-group shadow-lg    " style="height:50px">
+                    <input type="text" id="searchInput" class="form-control border border-2 border-success"
+                           placeholder="Bạn có ý tưởng gì cho chuyến đi tiếp theo không?">
+                    <button class="btn btn-success text-white fw-bold" onclick="searchTours()">
+                        Tìm kiếm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("GetToursByTypeAndDestination", Model)
+    @Html.Partial("GetToursByTypeAndDestination1", Model)
+    @Html.Partial("GetToursByTypeAndDestination2", Model)
+    @Html.Partial("GetToursByTypeAndDestination3", Model)
+    <div class="d-flex justify-content-center align-items-center my-4">
+        <a href="/getAllTour/GetAllTours" class="btn btn-success px-4 py-2 rounded-pill shadow">
+            Xem thêm
+        </a>
+    </div>
+
+</div>

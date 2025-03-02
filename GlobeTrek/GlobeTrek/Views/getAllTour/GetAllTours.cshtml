@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "GetAllTours";
+    Layout = "~/Views/Shared/_headerLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center text-secondary">Danh sách Tour</h2>
+
+    <!-- Bộ lọc tìm kiếm -->
+    <form id="filterForm" class="row mb-4">
+        <div class="col-md-4">
+            <input type="text" name="search" class="form-control" placeholder="Tìm kiếm theo tên..." value="@Request.QueryString["search"]">
+        </div>
+        <div class="col-md-3">
+            @if (ViewBag.TourTypes != null)
+            {
+                <select name="tourTypeId" class="form-control">
+                    <option value="">Chọn loại tour</option>
+                    @foreach (var type in ViewBag.TourTypes)
+                    {
+                        <option value="@type.id" @(Request.QueryString["tourTypeId"] == type.id.ToString() ? "selected" : "")>
+                            @type.name
+                        </option>
+                    }
+                </select>
+            }
+            else
+            {
+                <p>Không có loại tour nào.</p>
+            }
+
+        </div>
+
+        <div class="col-md-2">
+            <input type="number" name="minPrice" class="form-control" placeholder="Giá từ" value="@Request.QueryString["minPrice"]">
+        </div>
+
+        <div class="col-md-2">
+            <input type="number" name="maxPrice" class="form-control" placeholder="Giá đến" value="@Request.QueryString["maxPrice"]">
+        </div>
+
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-success w-100">Lọc</button>
+        </div>
+    </form>
+
+    <!-- Danh sách Tour theo dạng Grid -->
+    <div class="row">
+        @foreach (var tour in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <a href="@Url.Action("Details", "getAllTour", new { id = tour.id })" class="text-decoration-none">
+                    <div class="card shadow-sm h-100 border-0 hover-card">
+                        <img src="@tour.imageUrls" class="card-img-top" alt="@tour.title">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">@tour.title</h5>
+                            <p class="card-text text-muted">Loại: @tour.TourType.name</p>
+                            <p class="card-text fw-bold text-danger">@tour.price.ToString("N0") VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+
+    </div>
+</div>
+

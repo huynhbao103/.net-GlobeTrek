@@ -1,0 +1,212 @@
+﻿@model IEnumerable<GlobeTrek.Models.Tour>
+
+@{
+    ViewBag.Title = "Danh sách các tour chờ xóa";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách các tour chờ xóa</h2>
+
+<div class="tours-container">
+    @foreach (var tour in Model)
+    {
+        <div class="tour-card">
+            <!-- Ảnh Tour -->
+            <div class="tour-gallery">
+                @if (!string.IsNullOrEmpty(tour.imageUrls))
+                {
+                    <img src="@tour.imageUrls" class="tour-image" />
+                }
+                else
+                {
+                    <p class="no-image">Chưa có ảnh</p>
+                }
+            </div>
+
+            <!-- Thông tin chi tiết -->
+            <div class="tour-info">
+                <h2 class="tour-title">@tour.title</h2>
+                <p class="tour-description">@tour.description</p>
+
+                <div class="tour-pricing">
+                    <p><strong>Giá:</strong> @String.Format("{0:N0} VND", tour.price)</p>
+                    <p><strong>Giá trẻ em:</strong> @String.Format("{0:N0} VND", tour.childPrice)</p>
+                </div>
+
+                <div class="tour-meta">
+                    <p><strong>Địa điểm:</strong> @tour.location</p>
+                    <p><strong>Số ngày:</strong> @tour.duration</p>
+                    <p><strong>Loại Tour:</strong> @tour.TourType.name</p>
+                    <p><strong>Điểm đến:</strong> @tour.Destination.name</p>
+                </div>
+
+                <!-- Danh sách ngày khả dụng -->
+                <div class="availability">
+                    <h4>Ngày khả dụng:</h4>
+                    @if (tour.TourAvailabilities != null && tour.TourAvailabilities.Any())
+                    {
+                        <ul class="availability-list">
+                            @foreach (var availability in tour.TourAvailabilities)
+                            {
+                                <li class="availability-item">@availability.date.ToString("dd/MM/yyyy")</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Chưa có ngày khả dụng.</p>
+                    }
+                </div>
+
+                <!-- Hành động -->
+                <div class="actions">
+                    <button class="btn btn-danger" onclick="confirmDelete('@tour.id', '@tour.title')">Xác nhận xóa</button>
+                    <a href="@Url.Action("Index", "Tours")" class="btn btn-secondary">Quay lại danh sách</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal xác nhận xóa -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Xác nhận xóa Tour</h3>
+        <p>Bạn có chắc chắn muốn xóa tour <strong id="tourName"></strong> không?</p>
+        <form id="deleteForm" method="post" action="@Url.Action("ConfirmDelete", "Tours")">
+            <input type="hidden" name="id" id="tourId" />
+            <input type="hidden" name="confirm" value="true" />
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+        </form>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+    .tours-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .tour-card {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tour-gallery {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tour-image {
+        width: 100%;
+        max-width: 250px;
+        border-radius: 10px;
+    }
+
+    .tour-info {
+        text-align: center;
+    }
+
+    .tour-title {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .tour-description {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .tour-pricing p, .tour-meta p {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .availability-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .availability-item {
+        padding: 5px 0;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .actions {
+        margin-top: 15px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .btn-danger {
+        background: #dc3545;
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+
+    /* Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        width:50%;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .close {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+</style>
+
+<!-- JavaScript -->
+<script>
+    function confirmDelete(tourId, tourName) {
+        document.getElementById("tourId").value = tourId;
+        document.getElementById("tourName").innerText = tourName;
+        document.getElementById("deleteModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("deleteModal").style.display = "none";
+    }
+</script>

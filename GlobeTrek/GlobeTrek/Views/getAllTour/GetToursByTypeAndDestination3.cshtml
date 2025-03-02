@@ -1,0 +1,126 @@
+﻿@model IEnumerable<GlobeTrek.Models.Tour>
+
+@{
+    ViewData["Title"] = "Tour theo chủ đề";
+
+    var filteredTours = Model.Where(t => t.TourType != null && t.TourType.id == 1).ToList();
+    var uniqueDestinations = filteredTours.Select(t => t.Destination).Distinct().ToList();
+    var selectedDestination = uniqueDestinations.FirstOrDefault();
+}
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<style>
+    .swiper {
+        width: 100%;
+        padding-bottom: 30px;
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        width: 300px;
+        height: 100%;
+    }
+
+    .tour-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container py-4">
+    <h1 class="fw-bold">Tour theo chủ đề</h1>
+    <p class="text-muted">Khám phá loại tour bạn yêu thích</p>
+
+    @if (filteredTours.Any())
+    {
+        <div class="d-flex overflow-auto gap-2 py-3">
+            @foreach (var destination in uniqueDestinations)
+            {
+                <button class="btn btn-outline-success @(destination == selectedDestination ? "active" : "")"
+                        onclick="filterTours('@destination.name')">
+                    @destination.name
+                </button>
+            }
+        </div>
+
+        <!-- Swiper Slider -->
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                @foreach (var tour in Model.Where(t => t.isDisabled == true && t.isApproved == true))
+                {
+                    <div class="swiper-slide" style="background-color:white">
+                        <a href="@Url.Content("~/getAllTour/Details/" + tour.id)" style="text-decoration: none; color: inherit;">
+
+                            @if (!string.IsNullOrEmpty(tour.imageUrls))
+                            {
+                                <img src="@tour.imageUrls" class="tour-image" />
+                            }
+                            else
+                            {
+                                <p class="no-image text-center">Chưa có ảnh</p>
+                            }
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                                <h5 class="card-title mt-xxl-auto">@tour.description</h5>
+                                <p class="text-success fw-bold">@tour.price.ToString("N0") VND</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+            <!-- Pagination & Navigation -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    }
+    else
+    {
+        <p class="text-danger">Không có tour nào phù hợp với điều kiện.</p>
+    }
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        window.filterTours = function (destination) {
+            var slides = document.querySelectorAll('.swiper-slide');
+            slides.forEach(slide => {
+                if (slide.querySelector('.card').getAttribute('data-destination') === destination) {
+                    slide.style.display = 'flex';
+                } else {
+                    slide.style.display = 'none';
+                }
+            });
+
+            swiper.update(); // Cập nhật lại Swiper khi filter
+        };
+    });
+</script>

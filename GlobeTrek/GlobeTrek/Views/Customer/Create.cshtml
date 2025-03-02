@@ -1,0 +1,112 @@
+﻿@model GlobeTrek.Models.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_headerLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/index.css">
+<div style="background-color: rgba(174, 249, 231, 0.2);">
+    <div class="container mt-5 " style="min-height: 800px;">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg" style="border-radius: 10px; margin-top:100px">
+                    <div class="gradient-background  card-header text-white text-center">
+                        <h4>Đăng Ký</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="mb-3">
+                                @Html.LabelFor(model => model.username, new { @class = "form-label fw-bold" })
+                                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter username" } })
+                                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(model => model.email, new { @class = "form-label fw-bold" })
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter email" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(model => model.password, new { @class = "form-label fw-bold" })
+                                <div class="input-group">
+                                    @Html.PasswordFor(model => model.password, new { @class = "form-control", placeholder = "Enter password", id = "passwordInput" })
+                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('passwordInput')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="repasswordInput" class="form-label fw-bold">Re-enter Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="repasswordInput" class="form-control" placeholder="Re-enter password" required />
+                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('repasswordInput')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <small id="passwordMismatch" class="text-danger" style="display: none;">Passwords do not match!</small>
+                            </div>
+
+                            <!-- Trường role ẩn, mặc định là "User" -->
+                            @Html.HiddenFor(model => model.role, new { @Value = "User" })
+
+                            <button type="submit" class="gradient-background btn  w-100 text-white fw-bold" onclick="return validatePassword()">Create Account</button>
+                        }
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    @Html.ActionLink("Back to List", "LoginUser", null, new { @class = "btn btn-outline-secondary" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function togglePassword(inputId) {
+            var input = document.getElementById(inputId);
+            input.type = (input.type === "password") ? "text" : "password";
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("passwordInput").value;
+            var repassword = document.getElementById("repasswordInput").value;
+            var errorText = document.getElementById("passwordMismatch");
+
+            if (password !== repassword) {
+                errorText.style.display = "block";
+                return false;
+            } else {
+                errorText.style.display = "none";
+                return true;
+            }
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("passwordInput").value;
+            var repassword = document.getElementById("repasswordInput").value;
+            var errorText = document.getElementById("passwordMismatch");
+
+            if (password.length < 6) {
+                errorText.innerText = "Mật khẩu phải có ít nhất 6 ký tự.";
+                errorText.style.display = "block";
+                return false;
+            }
+
+            if (password !== repassword) {
+                errorText.innerText = "Mật khẩu nhập lại không khớp!";
+                errorText.style.display = "block";
+                return false;
+            }
+
+            errorText.style.display = "none";
+            return true;
+        }
+    </script>
+}
