@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TravelDBModelStoreContainer" CdmEntityContainer="TravelDBEntities1">
+  <EntityContainerMapping StorageEntityContainer="TravelDBModelStoreContainer" CdmEntityContainer="TravelDBEntities">
     <EntitySetMapping Name="CustomerInfoes">
       <EntityTypeMapping TypeName="TravelDBModel.CustomerInfo">
         <MappingFragment StoreEntitySet="CustomerInfo">
@@ -104,16 +104,7 @@
           <ScalarProperty Name="destinationId" ColumnName="destinationId" />
           <ScalarProperty Name="imageUrls" ColumnName="imageUrls" />
           <ScalarProperty Name="videoUrls" ColumnName="videoUrls" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TourSchedules">
-      <EntityTypeMapping TypeName="TravelDBModel.TourSchedule">
-        <MappingFragment StoreEntitySet="TourSchedules">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="tourId" ColumnName="tourId" />
-          <ScalarProperty Name="day" ColumnName="day" />
-          <ScalarProperty Name="activity" ColumnName="activity" />
+          <ScalarProperty Name="slug" ColumnName="slug" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

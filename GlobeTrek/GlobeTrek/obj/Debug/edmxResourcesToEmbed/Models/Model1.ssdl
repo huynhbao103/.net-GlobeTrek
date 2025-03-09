@@ -34,7 +34,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="orderDate" Type="datetime" />
     <Property Name="createdAt" Type="datetime" />
-    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="int" />
     <Property Name="tourId" Type="int" Nullable="false" />
     <Property Name="adultPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="childPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -97,15 +97,7 @@
     <Property Name="destinationId" Type="int" Nullable="false" />
     <Property Name="imageUrls" Type="nvarchar(max)" />
     <Property Name="videoUrls" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="TourSchedules">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tourId" Type="int" Nullable="false" />
-    <Property Name="day" Type="int" Nullable="false" />
-    <Property Name="activity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="slug" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="TourTypes">
     <Key>
@@ -175,7 +167,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Orders__userId__76969D2E">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -224,20 +216,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TourSched__tourI__571DF1D5">
-    <End Role="Tours" Type="Self.Tours" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="TourSchedules" Type="Self.TourSchedules" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tours">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="TourSchedules">
-        <PropertyRef Name="tourId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="TravelDBModelStoreContainer">
     <EntitySet Name="CustomerInfo" EntityType="Self.CustomerInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Destinations" EntityType="Self.Destinations" Schema="dbo" store:Type="Tables" />
@@ -247,7 +225,6 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourAvailabilities" EntityType="Self.TourAvailabilities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tours" EntityType="Self.Tours" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourSchedules" EntityType="Self.TourSchedules" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourTypes" EntityType="Self.TourTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__CustomerI__order__7B5B524B" Association="Self.FK__CustomerI__order__7B5B524B">
@@ -281,10 +258,6 @@
     <AssociationSet Name="FK__Tours__tourTypeI__4D94879B" Association="Self.FK__Tours__tourTypeI__4D94879B">
       <End Role="TourTypes" EntitySet="TourTypes" />
       <End Role="Tours" EntitySet="Tours" />
-    </AssociationSet>
-    <AssociationSet Name="FK__TourSched__tourI__571DF1D5" Association="Self.FK__TourSched__tourI__571DF1D5">
-      <End Role="Tours" EntitySet="Tours" />
-      <End Role="TourSchedules" EntitySet="TourSchedules" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

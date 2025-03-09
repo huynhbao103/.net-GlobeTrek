@@ -1,0 +1,34 @@
+﻿@model GlobeTrek.Models.Destination
+
+@{
+    ViewBag.Title = "Xóa Điểm Đến";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Xóa Điểm Đến</h2>
+
+    <h3>Bạn có chắc chắn muốn xóa điểm đến này?</h3>
+    <div>
+        <h4>Điểm Đến</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-danger" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>

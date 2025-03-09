@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_headerLayout.cshtml";
+}
+
+<div class="container mt-5 p-5">
+    <div class="row">
+        <!-- Cột bên trái: Thông tin tour -->
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                @if (!string.IsNullOrEmpty(Model.imageUrls))
+                {
+                    <img src="@Model.imageUrls" class="tour-image w-100 rounded-lg shadow-sm" />
+                }
+                else
+                {
+                    <p class="text-center text-muted py-3">Chưa có ảnh</p>
+                }
+                <div class="card-body">
+                    <h4 class="card-title text-success" id="tourName">@Model.title</h4>
+                    <p><strong>Ngày đã chọn:</strong> <span id="selectedDate" class="text-primary"></span></p>
+                    <p id="soldOutMessage" class="text-danger fw-bold d-none">Hết vé</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cột bên phải: Chọn vé -->
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h5 class="card-title">Chọn số lượng vé</h5>
+
+                    <p><strong>Giá vé người lớn:</strong> <span id="adultPrice"></span> VNĐ</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <label class="me-2">Vé người lớn:</label>
+                        <button class="btn btn-outline-success" onclick="changeTicket('adultTickets', -1)">-</button>
+                        <input type="number" class="form-control text-center mx-2" id="adultTickets" value="1" min="1" max="30" readonly onchange="calculateTotal()" />
+                        <button class="btn btn-outline-success" onclick="changeTicket('adultTickets', 1)">+</button>
+                    </div>
+
+                    <p><strong>Giá vé trẻ em:</strong> <span id="childPrice"></span> VNĐ</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <label class="me-2">Vé trẻ em:</label>
+                        <button class="btn btn-outline-success" onclick="changeTicket('childTickets', -1)">-</button>
+                        <input type="number" class="form-control text-center mx-2" id="childTickets" value="0" min="0" max="30" readonly onchange="calculateTotal()" />
+                        <button class="btn btn-outline-success" onclick="changeTicket('childTickets', 1)">+</button>
+                    </div>
+
+                    <p><strong>Tổng tiền:</strong> <span id="totalPrice" class="fw-bold text-success">0</span> VNĐ</p>
+
+                    <button id="continueBtn" class="btn btn-success w-100" onclick="saveToLocalStorage()">Tiếp tục</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let selectedTourDate = localStorage.getItem("selectedTourDate") || "Không có ngày nào được chọn.";
+        let selectedAdultPrice = parseInt(localStorage.getItem("selectedAdultPrice")) || 0;
+        let selectedChildPrice = parseInt(localStorage.getItem("selectedChildPrice")) || 0;
+        let availableTickets = parseInt(localStorage.getItem("availableTickets")) || 30; // Số vé còn lại từ DB
+
+        document.getElementById("selectedDate").innerText = selectedTourDate;
+        document.getElementById("adultPrice").innerText = selectedAdultPrice.toLocaleString();
+        document.getElementById("childPrice").innerText = selectedChildPrice.toLocaleString();
+
+        if (availableTickets === 0) {
+            document.getElementById("soldOutMessage").classList.remove("d-none");
+            document.getElementById("continueBtn").disabled = true;
+        }
+        calculateTotal();
+    });
+
+    function changeTicket(ticketType, change) {
+        let input = document.getElementById(ticketType);
+        let newValue = parseInt(input.value) + change;
+        let maxTickets = Math.min(30, parseInt(localStorage.getItem("availableTickets")) || 30);
+
+        if (newValue >= input.min && newValue <= maxTickets) {
+            input.value = newValue;
+            calculateTotal();
+        }
+    }
+
+    function calculateTotal() {
+        let adultTickets = parseInt(document.getElementById("adultTickets").value);
+        let childTickets = parseInt(document.getElementById("childTickets").value);
+        let adultPrice = parseInt(localStorage.getItem("selectedAdultPrice")) || 0;
+        let childPrice = parseInt(localStorage.getItem("selectedChildPrice")) || 0;
+
+        let totalPrice = (adultTickets * adultPrice) + (childTickets * childPrice);
+        document.getElementById("totalPrice").innerText = totalPrice.toLocaleString();
+    }
+
+    function saveToLocalStorage() {
+
+        let adultTickets = document.getElementById("adultTickets").value;
+        let childTickets = document.getElementById("childTickets").value;
+        let totalPrice = document.getElementById("totalPrice").innerText;
+       
+        localStorage.setItem("bookingAdultTickets", adultTickets);
+        localStorage.setItem("bookingChildTickets", childTickets);
+        localStorage.setItem("bookingTotalPrice", totalPrice);
+
+        // Chuyển hướng đến trang thanh toán hoặc bước tiếp theo
+       window.location.href = '@Url.Action("CreateOrder", "Orders", new { tourId = Model.id })';
+    }
+</script>

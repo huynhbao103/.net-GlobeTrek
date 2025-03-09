@@ -19,6 +19,7 @@ namespace GlobeTrek.Models
         {
             this.FavoriteTours = new HashSet<FavoriteTour>();
             this.Orders = new HashSet<Order>();
+            this.Promotions = new HashSet<Promotion>();
             this.TourAvailabilities = new HashSet<TourAvailability>();
         }
     
@@ -34,17 +35,20 @@ namespace GlobeTrek.Models
         public Nullable<bool> isDisabled { get; set; }
         public Nullable<bool> isApproved { get; set; }
         public Nullable<bool> isDeleted { get; set; }
-        public Nullable<bool> deletionRequested { get; set; }   
+        public Nullable<bool> deletionRequested { get; set; }
         public int tourTypeId { get; set; }
         public int destinationId { get; set; }
         public string imageUrls { get; set; }
         public string videoUrls { get; set; }
+        public string slug { get; set; }
     
         public virtual Destination Destination { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoriteTour> FavoriteTours { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Promotion> Promotions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourAvailability> TourAvailabilities { get; set; }
         public virtual TourType TourType { get; set; }

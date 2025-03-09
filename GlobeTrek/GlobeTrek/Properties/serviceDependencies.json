@@ -2,6 +2,14 @@
   "dependencies": {
     "appInsights1": {
       "type": "appInsights"
+    },
+    "secrets1": {
+      "type": "secrets"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DatabaseConnection",
+      "dynamicId": null
     }
   }
 }

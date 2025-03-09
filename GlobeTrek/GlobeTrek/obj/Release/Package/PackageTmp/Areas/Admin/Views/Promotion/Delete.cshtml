@@ -1,0 +1,92 @@
+﻿@model GlobeTrek.Models.Promotion
+
+@{
+    ViewBag.Title = "Xóa khuyến mãi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7fa;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h2, h3 {
+        color: #2c3e50;
+        font-weight: 600;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+    }
+
+    .dl-horizontal dt {
+        font-weight: 500;
+        color: #34495e;
+        width: 150px;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 160px;
+        color: #7f8c8d;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border: none;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+    .btn-secondary {
+        background-color: #95a5a6;
+        border: none;
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+</style>
+
+<h2>Xóa khuyến mãi</h2>
+
+<h3>Bạn có chắc muốn xóa khuyến mãi này?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Tour.title)</dt>
+        <dd>@Html.DisplayFor(model => model.Tour.title)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Discount)</dt>
+        <dd>@Html.DisplayFor(model => model.Discount)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.StartDate)</dt>
+        <dd>@Html.DisplayFor(model => model.StartDate)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.EndDate)</dt>
+        <dd>@Html.DisplayFor(model => model.EndDate)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.IsActive)</dt>
+        <dd>@(Model.IsActive.HasValue && Model.IsActive.Value ? "Hoạt động" : "Không hoạt động")</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

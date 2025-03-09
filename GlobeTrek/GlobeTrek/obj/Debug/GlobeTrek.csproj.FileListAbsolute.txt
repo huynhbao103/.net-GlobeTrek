@@ -158,3 +158,16 @@ D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.AspNet.Identity.Core.xml
 D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.Owin.xml
 D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.Owin.Security.xml
 D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\PayPal.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\PayPal.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\BouncyCastle.Cryptography.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MailKit.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MimeKit.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\System.Formats.Asn1.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\BouncyCastle.Cryptography.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MailKit.pdb
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MailKit.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MailKit.dll.config
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MimeKit.pdb
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MimeKit.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\System.Formats.Asn1.xml

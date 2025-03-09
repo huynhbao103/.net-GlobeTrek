@@ -1,0 +1,218 @@
+﻿@model PagedList.IPagedList<GlobeTrek.Models.Tour>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Xác nhận yêu cầu Tour";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="page-title">Danh sách các tour chờ xác nhận</h2>
+
+<div class="tour-list">
+    @foreach (var tour in Model)
+    {
+        <div class="tour-details-container">
+            <!-- Ảnh Tour -->
+            <div class="tour-gallery">
+                @if (!string.IsNullOrEmpty(tour.imageUrls))
+                {
+                    <img src="@tour.imageUrls" class="tour-image" />
+                }
+                else
+                {
+                    <p class="no-image">Chưa có ảnh</p>
+                }
+            </div>
+
+            <!-- Thông tin chi tiết -->
+            <div class="tour-info">
+                <h3 class="tour-title">@tour.title</h3>
+                <p class="tour-description">@tour.description</p>
+
+                <div class="tour-pricing">
+                    <p><strong>Giá:</strong> @String.Format("{0:N0} VND", tour.price)</p>
+                    <p><strong>Giá trẻ em:</strong> @String.Format("{0:N0} VND", tour.childPrice)</p>
+                    <p><strong>Giá ngày đặc biệt:</strong> @String.Format("{0:N0} VND", tour.specialAdultPrice)</p>
+                    <p><strong>Giá trẻ em ngày đặc biệt:</strong> @String.Format("{0:N0} VND", tour.specialChildPrice)</p>
+                </div>
+
+                <div class="tour-meta">
+                    <p><strong>Địa điểm:</strong> @tour.location</p>
+                    <p><strong>Số ngày:</strong> @tour.duration</p>
+                    <p><strong>Loại Tour:</strong> @tour.TourType.name</p>
+                    <p><strong>Điểm đến:</strong> @tour.Destination.name</p>
+                </div>
+
+                <!-- Danh sách ngày khả dụng -->
+                <div class="availability">
+                    <h4>Ngày khả dụng:</h4>
+                    @if (tour.TourAvailabilities != null && tour.TourAvailabilities.Any())
+                    {
+                        <ul class="availability-list">
+                            @foreach (var availability in tour.TourAvailabilities)
+                            {
+                                <li class="availability-item">@availability.date.ToString("dd/MM/yyyy")</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Chưa có ngày khả dụng.</p>
+                    }
+                </div>
+
+                <!-- Nút hành động -->
+                <div class="actions">
+                    <form action="@Url.Action("ApproveTour", "Tours")" method="post" class="approve-form">
+                        <input type="hidden" name="id" value="@tour.id" />
+                        <button type="submit" class="btn btn-success">Duyệt</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="pagination-container">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("PendingTours", new { page }))
+</div>
+
+<!-- CSS -->
+<style>
+    .pagination-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+    .page-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .tour-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .tour-details-container {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 30px;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Gallery */
+    .tour-gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tour-image {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .tour-image:hover {
+            transform: scale(1.05);
+        }
+
+    /* Tour Info */
+    .tour-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tour-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .tour-description {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .tour-pricing p, .tour-meta p {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    /* Availability */
+    .availability-section {
+        margin-top: 20px;
+        background: #f4f4f4;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .availability-list {
+        list-style: none;
+        padding: 0;
+    }
+
+        .availability-list li {
+            padding: 5px 0;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+    /* Buttons */
+    .actions {
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .btn-success {
+        background: #28a745;
+    }
+
+    .btn-warning {
+        background: #ffc107;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+</style>

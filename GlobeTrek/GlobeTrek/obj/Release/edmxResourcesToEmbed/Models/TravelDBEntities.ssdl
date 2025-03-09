@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CustomerInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderId" Type="int" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="255" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Destinations">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FavoriteTours">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="tourId" Type="int" Nullable="false" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="updatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderDate" Type="datetime" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="userId" Type="int" />
+    <Property Name="tourId" Type="int" Nullable="false" />
+    <Property Name="adultPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="childPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="adultCount" Type="int" Nullable="false" />
+    <Property Name="childCount" Type="int" Nullable="false" />
+    <Property Name="totalValue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="bookingDate" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="paymentMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="updatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Promotions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Revenue">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="totalSales" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="totalOrders" Type="int" Nullable="false" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="updatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TourAvailabilities">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tourId" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="availableSeats" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tours">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="specialAdultPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="childPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="specialChildPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="location" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="duration" Type="int" Nullable="false" />
+    <Property Name="isDisabled" Type="bit" />
+    <Property Name="isApproved" Type="bit" />
+    <Property Name="isDeleted" Type="bit" />
+    <Property Name="deletionRequested" Type="bit" />
+    <Property Name="tourTypeId" Type="int" Nullable="false" />
+    <Property Name="destinationId" Type="int" Nullable="false" />
+    <Property Name="imageUrls" Type="nvarchar(max)" />
+    <Property Name="videoUrls" Type="nvarchar(max)" />
+    <Property Name="slug" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="TourTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="updatedAt" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__CustomerI__order__7B5B524B">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CustomerInfo">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavoriteT__tourI__04E4BC85">
+    <End Role="Tours" Type="Self.Tours" Multiplicity="1" />
+    <End Role="FavoriteTours" Type="Self.FavoriteTours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tours">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FavoriteTours">
+        <PropertyRef Name="tourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavoriteT__userI__03F0984C">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="FavoriteTours" Type="Self.FavoriteTours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FavoriteTours">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__tourId__778AC167">
+    <End Role="Tours" Type="Self.Tours" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tours">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="tourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__userId__76969D2E">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TourAvail__tourI__5AEE82B9">
+    <End Role="Tours" Type="Self.Tours" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TourAvailabilities" Type="Self.TourAvailabilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tours">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TourAvailabilities">
+        <PropertyRef Name="tourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tours__destinati__4E88ABD4">
+    <End Role="Destinations" Type="Self.Destinations" Multiplicity="1" />
+    <End Role="Tours" Type="Self.Tours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destinations">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tours">
+        <PropertyRef Name="destinationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tours__tourTypeI__4D94879B">
+    <End Role="TourTypes" Type="Self.TourTypes" Multiplicity="1" />
+    <End Role="Tours" Type="Self.Tours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tours">
+        <PropertyRef Name="tourTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Promotion_Tour">
+    <End Role="Tours" Type="Self.Tours" Multiplicity="1" />
+    <End Role="Promotions" Type="Self.Promotions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tours">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Promotions">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravelDBModelStoreContainer">
+    <EntitySet Name="CustomerInfo" EntityType="Self.CustomerInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Destinations" EntityType="Self.Destinations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FavoriteTours" EntityType="Self.FavoriteTours" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Promotions" EntityType="Self.Promotions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Revenue" EntityType="Self.Revenue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourAvailabilities" EntityType="Self.TourAvailabilities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tours" EntityType="Self.Tours" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourTypes" EntityType="Self.TourTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CustomerI__order__7B5B524B" Association="Self.FK__CustomerI__order__7B5B524B">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavoriteT__tourI__04E4BC85" Association="Self.FK__FavoriteT__tourI__04E4BC85">
+      <End Role="Tours" EntitySet="Tours" />
+      <End Role="FavoriteTours" EntitySet="FavoriteTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavoriteT__userI__03F0984C" Association="Self.FK__FavoriteT__userI__03F0984C">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="FavoriteTours" EntitySet="FavoriteTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__tourId__778AC167" Association="Self.FK__Orders__tourId__778AC167">
+      <End Role="Tours" EntitySet="Tours" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__userId__76969D2E" Association="Self.FK__Orders__userId__76969D2E">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TourAvail__tourI__5AEE82B9" Association="Self.FK__TourAvail__tourI__5AEE82B9">
+      <End Role="Tours" EntitySet="Tours" />
+      <End Role="TourAvailabilities" EntitySet="TourAvailabilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tours__destinati__4E88ABD4" Association="Self.FK__Tours__destinati__4E88ABD4">
+      <End Role="Destinations" EntitySet="Destinations" />
+      <End Role="Tours" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tours__tourTypeI__4D94879B" Association="Self.FK__Tours__tourTypeI__4D94879B">
+      <End Role="TourTypes" EntitySet="TourTypes" />
+      <End Role="Tours" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Promotion_Tour" Association="Self.FK_Promotion_Tour">
+      <End Role="Tours" EntitySet="Tours" />
+      <End Role="Promotions" EntitySet="Promotions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
