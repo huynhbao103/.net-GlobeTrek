@@ -171,3 +171,14 @@ D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MailKit.dll.config
 D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MimeKit.pdb
 D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\MimeKit.xml
 D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\System.Formats.Asn1.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Newtonsoft.Json.Bson.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\System.Net.Http.Formatting.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\System.Web.Http.dll
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Newtonsoft.Json.Bson.pdb
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\Newtonsoft.Json.Bson.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\System.Net.Http.Formatting.xml
+D:\Code\VisualStudio\GlobeTrek\GlobeTrek\bin\System.Web.Http.xml
