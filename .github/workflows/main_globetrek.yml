@@ -27,8 +27,9 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore GlobeTrek/GlobeTrek.sln
 
-      - name: Publish to folder
-        run: msbuild .net-GlobeTrek/GlobeTrek/GlobeTrek.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+      - name: Build Project
+        run: msbuild GlobeTrek/GlobeTrek.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+
 
 
       - name: Upload artifact for deployment job
@@ -52,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ASP-app
-          path: '.net-GlobeTrek/GlobeTrek/published/**'
+          path: 'GlobeTrek/published/**'
 
       - name: Login to Azure
         uses: azure/login@v2
