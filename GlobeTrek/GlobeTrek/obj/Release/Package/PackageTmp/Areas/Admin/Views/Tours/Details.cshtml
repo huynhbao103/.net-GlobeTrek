@@ -1,0 +1,189 @@
+﻿@model GlobeTrek.Models.Tour
+
+@{
+    ViewBag.Title = "Chi tiết Tour";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="tour-details-container">
+    <!-- Ảnh Tour -->
+    <div class="tour-gallery">
+        @if (!string.IsNullOrEmpty(Model.imageUrls))
+        {
+            <img src="@Model.imageUrls" class="tour-image" />
+        }
+        else
+        {
+            <p class="no-image">Chưa có ảnh</p>
+        }
+    </div>
+
+    <!-- Thông tin chi tiết -->
+    <div class="tour-info">
+        <h2 class="tour-title">@Model.title</h2>
+        <p class="tour-description">@Model.description</p>
+
+        <div class="tour-pricing">
+            <p><strong>Giá:</strong> @String.Format("{0:N0} VND", Model.price)</p>
+            <p><strong>Giá trẻ em:</strong> @String.Format("{0:N0} VND", Model.childPrice)</p>
+            <p><strong>Giá ngày đặc biệt:</strong> @String.Format("{0:N0} VND", Model.specialAdultPrice)</p>
+            <p><strong>Giá trẻ em ngày đặc biệt:</strong> @String.Format("{0:N0} VND", Model.specialChildPrice)</p>
+        </div>
+
+        <div class="tour-meta">
+            <p><strong>Địa điểm:</strong> @Model.location</p>
+            <p><strong>Số ngày:</strong> @Model.duration</p>
+            <p><strong>Loại Tour:</strong> @Model.TourType.name</p>
+            <p><strong>Điểm đến:</strong> @Model.Destination.name</p>
+        </div>
+
+        <!-- Danh sách ngày khả dụng -->
+        <div class="availability">
+            <h4>Ngày khả dụng:</h4>
+            @if (Model.TourAvailabilities != null && Model.TourAvailabilities.Any())
+            {
+                <ul class="availability-list">
+                    @foreach (var availability in Model.TourAvailabilities)
+                    {
+                        <li class="availability-item">@availability.date.ToString("dd/MM/yyyy")</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Chưa có ngày khả dụng.</p>
+            }
+        </div>
+        <!-- Nút hành động -->
+        <div class="actions">
+            <a href="@Url.Action("Edit", "Tours", new { id = Model.id })" class="btn btn-warning">Chỉnh sửa</a>
+            <a href="@Url.Action("Index", "Tours")" class="btn btn-secondary">Quay lại danh sách</a>
+        </div>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+    .tour-details-container {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 30px;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Gallery */
+    .tour-gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tour-main-image {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .tour-main-image:hover {
+            transform: scale(1.05);
+        }
+
+    .tour-thumbnails {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .thumbnail-item {
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+        .thumbnail-item:hover {
+            opacity: 0.7;
+        }
+
+    /* Tour Info */
+    .tour-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tour-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .tour-description {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .tour-pricing p, .tour-meta p {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    /* Availability */
+    .availability-section {
+        margin-top: 20px;
+        background: #f4f4f4;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .availability-list {
+        list-style: none;
+        padding: 0;
+    }
+
+        .availability-list li {
+            padding: 5px 0;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+    /* Buttons */
+    .actions {
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .btn-warning {
+        background: #ffc107;
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<!-- JavaScript -->
+<script>
+    function changeMainImage(imageUrl) {
+        document.querySelector('.tour-main-image').src = imageUrl;
+    }
+</script>

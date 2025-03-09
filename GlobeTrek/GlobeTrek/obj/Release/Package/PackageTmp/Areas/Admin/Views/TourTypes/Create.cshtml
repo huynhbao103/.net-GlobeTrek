@@ -1,0 +1,46 @@
+﻿@model GlobeTrek.Models.TourType
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Tạo Loại Tour</h2>
+
+    @* Hiển thị thông báo thành công *@
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Thành công!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @* Hiển thị thông báo lỗi *@
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Lỗi!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card p-4 shadow-sm">
+            @* Hiển thị lỗi validation *@
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-warning" })
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Tạo mới</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Quay Lại</a>
+        </div>
+    }
+</div>

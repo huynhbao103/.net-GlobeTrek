@@ -1,0 +1,159 @@
+﻿@model GlobeTrek.Models.Order
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = "~/Views/Shared/_headerLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Partial thông tin khách hàng -->
+    <div class="mb-4">
+        @Html.Partial("_CustomerInfo", new GlobeTrek.Models.Order { id = Model.id })
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Xác Nhận Đơn Hàng</h2>
+        </div>
+
+        @using (Html.BeginForm("CreateOrder", "Orders", FormMethod.Post, new { id = "createOrderForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">Tour ID:</span>
+                            <span id="displayTourId">@Model.tourId</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">User ID:</span>
+                            <span id="displayUserId">@Model.userId</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">Giá Người Lớn:</span>
+                            <span id="displayAdultPrice">@Model.adultPrice.ToString("N2") VND</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">Giá Trẻ Em:</span>
+                            <span id="displayChildPrice">@Model.childPrice.ToString("N2") VND</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">Số Người Lớn:</span>
+                            <span id="displayAdultCount">@Model.adultCount</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">Số Trẻ Em:</span>
+                            <span id="displayChildCount">@Model.childCount</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">Ngày Đi:</span>
+                            <span id="displayBookingDate">@Model.bookingDate.ToString("dd/MM/yyyy")</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between border-bottom pb-2">
+                            <span class="fw-bold">Tổng Giá:</span>
+                            <span id="displayTotalValue" class="text-success fw-bold">@Model.totalValue.ToString("N2") VND</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mt-3">
+                            <label class="fw-bold mb-2">Phương Thức Thanh Toán:</label>
+                            <select class="form-select" name="paymentMethod" id="paymentMethod">
+                                <option value="pointer-wallet">Thẻ ngân hàng</option>
+                                <option value="paypal">PayPal</option>
+                                <!-- Thêm tùy chọn PayPal -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden inputs -->
+            @Html.HiddenFor(model => model.tourId)
+            @Html.HiddenFor(model => model.userId)
+            @Html.HiddenFor(model => model.adultPrice)
+            @Html.HiddenFor(model => model.childPrice)
+            @Html.HiddenFor(model => model.adultCount)
+            @Html.HiddenFor(model => model.childCount)
+            @Html.HiddenFor(model => model.totalValue)
+            @Html.HiddenFor(model => model.bookingDate)
+
+            <input type="hidden" id="hiddenFullName" name="customerName" />
+            <input type="hidden" id="hiddenEmail" name="customerEmail" />
+            <input type="hidden" id="hiddenPhone" name="customerPhone" />
+
+            <div class="card-footer text-end">
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary me-2">Hủy</a>
+                <button type="submit" class="btn btn-primary">Xác Nhận Đơn Hàng</button>
+                <!-- Xóa nút riêng cho PayPal vì đã tích hợp vào form -->
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Lấy dữ liệu từ localStorage và loại bỏ dấu phẩy nếu có
+            var adultCount = parseInt(localStorage.getItem("bookingAdultTickets")) || 0;
+            var childCount = parseInt(localStorage.getItem("bookingChildTickets")) || 0;
+            var totalValue = parseFloat(localStorage.getItem("bookingTotalPrice")?.replace(/,/g, '')) || 0;
+            var adultPrice = parseFloat(localStorage.getItem("selectedAdultPrice")?.replace(/,/g, '')) || 0;
+            var childPrice = parseFloat(localStorage.getItem("selectedChildPrice")?.replace(/,/g, '')) || 0;
+            var bookingDate = localStorage.getItem("selectedTourDate") || "";
+
+            // Cập nhật giao diện hiển thị
+            $('#displayAdultCount').text(adultCount);
+            $('#displayChildCount').text(childCount);
+            $('#displayTotalValue').text(totalValue.toLocaleString('vi-VN') + ' VND');
+            $('#displayAdultPrice').text(adultPrice.toLocaleString('vi-VN') + ' VND');
+            $('#displayChildPrice').text(childPrice.toLocaleString('vi-VN') + ' VND');
+
+            if (bookingDate) {
+                var date = new Date(bookingDate);
+                $('#displayBookingDate').text(date.toLocaleDateString('vi-VN'));
+            }
+
+            // Cập nhật giá trị vào hidden input
+            $('#adultCount').val(adultCount);
+            $('#childCount').val(childCount);
+            $('#totalValue').val(totalValue);
+            $('#adultPrice').val(adultPrice);
+            $('#childPrice').val(childPrice);
+            $('#bookingDate').val(bookingDate);
+
+            // Xử lý thông tin khách hàng
+            var customerInfo = JSON.parse(localStorage.getItem("customerInfo")) || {};
+
+            // Khi gửi form, kiểm tra thông tin khách hàng
+            $('#createOrderForm').on('submit', function (e) {
+                $('#hiddenFullName').val(customerInfo.fullName || "");
+                $('#hiddenEmail').val(customerInfo.email || "");
+                $('#hiddenPhone').val(customerInfo.phone || "");
+
+                if (!customerInfo.fullName || !customerInfo.email || !customerInfo.phone) {
+                    alert("Vui lòng lưu thông tin khách hàng trước khi tạo đơn hàng!");
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,71 @@
+﻿@model GlobeTrek.Models.User
+@{
+    ViewBag.Title = "Admin Register";
+}
+
+<link rel="stylesheet" href="~/Content/StyleSheet1.css"> <!-- Import file CSS tùy chỉnh -->
+
+<div class="container">
+    <div class="register-card">
+        <h2 class="title">Đăng ký Admin</h2>
+
+        @using (Html.BeginForm("Register", "Auth", FormMethod.Post, new { @class = "form", id = "registerForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label class="form-label">Tên tài khoản</label>
+                @Html.TextBoxFor(m => m.username, new { @class = "form-control", placeholder = "Nhập tên tài khoản" })
+                @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder = "Nhập email" })
+                @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Mật khẩu</label>
+                @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "Nhập mật khẩu", id = "password" })
+                @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Xác nhận mật khẩu</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Nhập lại mật khẩu">
+                <span id="passwordError" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn">Đăng ký</button>
+
+            <p class="login-link">
+                Đã có tài khoản? <a href="@Url.Action("Login", "Auth")">Đăng nhập</a>
+            </p>
+        }
+    </div>
+</div>
+
+<script>
+    document.getElementById("registerForm").addEventListener("submit", function (event) {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var errorText = document.getElementById("passwordError");
+
+        if (password !== confirmPassword) {
+            event.preventDefault(); // Ngăn form gửi đi
+            errorText.textContent = "Mật khẩu nhập lại không khớp!";
+        } else {
+            errorText.textContent = ""; // Xóa lỗi nếu đúng
+        }
+    });
+</script>
+<style>
+    body {
+        background: linear-gradient(to right, #2c3e50, #4ca1af);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>

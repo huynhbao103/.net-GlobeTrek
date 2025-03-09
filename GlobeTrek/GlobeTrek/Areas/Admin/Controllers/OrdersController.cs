@@ -17,11 +17,15 @@ namespace GlobeTrek.Areas.Admin.Controllers
         // GET: Admin/Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Tour).Include(o => o.User);
+            // Include CustomerInfoes cùng với Tour và User
+            var orders = db.Orders
+                .Include(o => o.Tour)
+                .Include(o => o.User)
+                .Include(o => o.CustomerInfoes); 
+
             return View(orders.ToList());
         }
 
-     
         protected override void Dispose(bool disposing)
         {
             if (disposing)

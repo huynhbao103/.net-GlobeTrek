@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="359d3eeac654461fad77e04628ca3a75" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelDBModel.CustomerInfo" Width="1.5" PointX="10.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.Destination" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.FavoriteTour" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.Order" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.Promotion" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.Revenue" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.TourAvailability" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.Tour" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.TourType" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelDBModel.User" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="TravelDBModel.FK__CustomerI__order__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK__Tours__destinati__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK__FavoriteT__tourI__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK__FavoriteT__userI__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK__Orders__tourId__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK__Orders__userId__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK_Promotion_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK__TourAvail__tourI__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelDBModel.FK__Tours__tourTypeI__4D94879B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

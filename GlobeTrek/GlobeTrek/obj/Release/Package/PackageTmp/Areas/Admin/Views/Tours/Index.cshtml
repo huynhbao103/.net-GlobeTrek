@@ -1,0 +1,280 @@
+﻿@*@model IEnumerable<GlobeTrek.Models.Tour>*@
+@model PagedList.IPagedList<GlobeTrek.Models.Tour>
+@using PagedList.Mvc
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    /* Giao diện chung */
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Nút tạo tour */
+    .create-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+        background-color: #3498db;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .create-btn:hover {
+            background-color: #2980b9;
+        }
+
+    /* Bảng tour */
+    .tour-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-header {
+        background: #3498db;
+        color: white;
+        font-size: 16px;
+    }
+
+        .table-header th {
+            padding: 15px;
+            text-align: center;
+        }
+
+    .tour-table tbody tr {
+        background: #f9f9f9;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .tour-table tbody tr:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .tour-table td {
+        padding: 15px;
+        text-align: center;
+        vertical-align: middle;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* Hình ảnh tour */
+    .tour-image {
+        width: 100px;
+        height: 80px;
+        border-radius: 8px;
+        object-fit: cover;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Trạng thái duyệt */
+    .status-badge {
+        display: inline-block;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .approved {
+        background: #2ecc71;
+        color: white;
+    }
+
+    .pending {
+        background: #f1c40f;
+        color: black;
+    }
+
+    /* Nút bật/tắt */
+    .toggle-status {
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out;
+    }
+
+        .toggle-status.btn-primary {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .toggle-status.btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+    /* Nút hành động */
+    .action-buttons .btn {
+        margin: 2px;
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 5px;
+        transition: opacity 0.3s ease;
+    }
+
+        .action-buttons .btn:hover {
+            opacity: 0.9;
+        }
+
+    .btn-info {
+        background: #3498db;
+        color: white;
+    }
+
+    .btn-warning {
+        background: #f1c40f;
+        color: black;
+    }
+
+    .btn-danger {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .pagination-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        display: inline-block;
+    }
+
+        .pagination li {
+            display: inline;
+            margin: 5px;
+        }
+
+        .pagination a, .pagination span {
+            padding: 8px 12px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            color: #3498db;
+            border-radius: 5px;
+        }
+
+        .pagination .active span {
+            background-color: #3498db;
+            color: white;
+            border: 1px solid #3498db;
+        }
+</style>
+
+<h2 class="text-center title">Danh sách Tour</h2>
+
+<p class="mb-4 text-center">
+    @Html.ActionLink("Tạo Tour Mới", "Create", null, new { @class = "btn create-btn" })
+</p>
+
+<table class="table tour-table">
+    <thead class="table-header">
+        <tr>
+            <th>Hình ảnh</th>
+            <th>Tên Tour</th>
+            <th>Điểm đến</th>
+            <th>Loại Tour</th>
+            <th>Giá (VNĐ)</th>
+            <th>Trạng thái duyệt tour</th>
+            <th>Yêu cầu xóa tour</th>
+            <th>Bật/Tắt</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tour in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@tour.imageUrls" class="tour-image" />
+                </td>
+                <td>@tour.title</td>
+                <td>@tour.Destination.name</td>
+                <td>@tour.TourType.name</td>
+                <td>@tour.price.ToString("N0")</td>
+                <td>
+                    <span class="status-badge @(tour.isApproved == true ? "approved" : "pending")">
+                        @(tour.isApproved == true ? "Đã duyệt" : "Chưa duyệt")
+                    </span>
+                </td>
+                <td>
+                    <span class="status-badge @(tour.deletionRequested == true ? "approved" : "pending")">
+                        @(tour.deletionRequested == true ? "Đã yêu cầu" : "Chưa yêu cầu")
+                    </span>
+                </td>
+                <td>
+                    <button class="toggle-status @(tour.isDisabled == false ? "btn-primary" : "btn-danger")" data-id="@tour.id" data-status="@tour.isDisabled">
+                        @(tour.isDisabled == false ? "Bật" : "Tắt")
+                    </button>
+                </td>
+                <td class="action-buttons">
+                    @Html.ActionLink("Chi tiết", "Details", new { id = tour.id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = tour.id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = tour.id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+
+<script>
+    console.log("Script đã được tải");
+</script>
+
+
+<script>
+        console.log("Script đã được tải");
+
+        $(document).on("click", ".toggle-status", function () {
+            console.log("Nút được nhấn!");
+    var button = $(this);
+    var tourId = button.data("id");
+    console.log("Tour ID:", tourId); // Kiểm tra xem tourId có đúng không
+
+    $.ajax({
+        url: '@Url.Action("ToggleStatus", "Tours")',
+        type: 'POST',
+        data: { id: tourId },
+        success: function (response) {
+            console.log("Phản hồi từ server:", response); // Kiểm tra phản hồi từ server
+            if (response.success) {
+                var newStatus = response.isDisabled;
+                button.data("status", newStatus);
+
+                if (newStatus) {
+                    button.text("Tắt")
+                          .removeClass("btn-primary")
+                          .addClass("btn-danger");
+                } else {
+                    button.text("Bật")
+                          .removeClass("btn-danger")
+                          .addClass("btn-primary");
+                }
+            } else {
+                alert("Cập nhật thất bại: " + response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("Lỗi AJAX:", error); // Kiểm tra lỗi AJAX
+            alert("Lỗi kết nối: " + error);
+        }
+    });
+});
+</script>

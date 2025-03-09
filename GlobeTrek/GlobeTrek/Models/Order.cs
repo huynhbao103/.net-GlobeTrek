@@ -23,7 +23,7 @@ namespace GlobeTrek.Models
         public int id { get; set; }
         public Nullable<System.DateTime> orderDate { get; set; }
         public Nullable<System.DateTime> createdAt { get; set; }
-        public int userId { get; set; }
+        public Nullable<int> userId { get; set; }
         public int tourId { get; set; }
         public decimal adultPrice { get; set; }
         public decimal childPrice { get; set; }

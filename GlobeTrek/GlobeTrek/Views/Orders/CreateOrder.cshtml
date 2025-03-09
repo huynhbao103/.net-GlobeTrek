@@ -73,8 +73,9 @@
                         <div class="mt-3">
                             <label class="fw-bold mb-2">Phương Thức Thanh Toán:</label>
                             <select class="form-select" name="paymentMethod" id="paymentMethod">
-                                <option value="pointer-wallet">Thẻ ngân hàng</option>
-                                <option value="connected-wallet">Chuyển khoản</option>
+                                <option value="pointer-wallet">Thanh toán trực tiếp</option>
+                                <option value="paypal">PayPal</option>
+                                <!-- Thêm tùy chọn PayPal -->
                             </select>
                         </div>
                     </div>
@@ -98,6 +99,7 @@
             <div class="card-footer text-end">
                 <a href="@Url.Action("Index")" class="btn btn-outline-secondary me-2">Hủy</a>
                 <button type="submit" class="btn btn-primary">Xác Nhận Đơn Hàng</button>
+                <!-- Xóa nút riêng cho PayPal vì đã tích hợp vào form -->
             </div>
         }
     </div>
@@ -109,41 +111,39 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            // Load data from localStorage
-            var adultCount = localStorage.getItem("bookingAdultTickets") || 0;
-            var childCount = localStorage.getItem("bookingChildTickets") || 0;
-            var totalValue = localStorage.getItem("bookingTotalPrice") || 0;
-            var adultPrice = localStorage.getItem("selectedAdultPrice") || 0;
-            var childPrice = localStorage.getItem("selectedChildPrice") || 0;
+            // Lấy dữ liệu từ localStorage và loại bỏ dấu phẩy nếu có
+            var adultCount = parseInt(localStorage.getItem("bookingAdultTickets")) || 0;
+            var childCount = parseInt(localStorage.getItem("bookingChildTickets")) || 0;
+            var totalValue = parseFloat(localStorage.getItem("bookingTotalPrice")?.replace(/,/g, '')) || 0;
+            var adultPrice = parseFloat(localStorage.getItem("selectedAdultPrice")?.replace(/,/g, '')) || 0;
+            var childPrice = parseFloat(localStorage.getItem("selectedChildPrice")?.replace(/,/g, '')) || 0;
             var bookingDate = localStorage.getItem("selectedTourDate") || "";
 
-            // Update display elements
+            // Cập nhật giao diện hiển thị
             $('#displayAdultCount').text(adultCount);
             $('#displayChildCount').text(childCount);
-            $('#displayTotalValue').text(parseFloat(totalValue.replace(",", "")).toFixed(2) + ' VND');
-            $('#displayAdultPrice').text(parseFloat(adultPrice).toFixed(2) + ' VND');
-            $('#displayChildPrice').text(parseFloat(childPrice).toFixed(2) + ' VND');
+            $('#displayTotalValue').text(totalValue.toLocaleString('vi-VN') + ' VND');
+            $('#displayAdultPrice').text(adultPrice.toLocaleString('vi-VN') + ' VND');
+            $('#displayChildPrice').text(childPrice.toLocaleString('vi-VN') + ' VND');
 
             if (bookingDate) {
                 var date = new Date(bookingDate);
                 $('#displayBookingDate').text(date.toLocaleDateString('vi-VN'));
             }
 
-            // Update hidden inputs
+            // Cập nhật giá trị vào hidden input
             $('#adultCount').val(adultCount);
             $('#childCount').val(childCount);
-            $('#totalValue').val(totalValue.replace(",", ""));
+            $('#totalValue').val(totalValue);
             $('#adultPrice').val(adultPrice);
             $('#childPrice').val(childPrice);
             $('#bookingDate').val(bookingDate);
 
-            // Handle customer info
+            // Xử lý thông tin khách hàng
             var customerInfo = JSON.parse(localStorage.getItem("customerInfo")) || {};
 
-            // Form submission
+            // Khi gửi form, kiểm tra thông tin khách hàng
             $('#createOrderForm').on('submit', function (e) {
-                var customerInfo = JSON.parse(localStorage.getItem("customerInfo")) || {};
-
                 $('#hiddenFullName').val(customerInfo.fullName || "");
                 $('#hiddenEmail').val(customerInfo.email || "");
                 $('#hiddenPhone').val(customerInfo.phone || "");

@@ -1,0 +1,68 @@
+﻿@model List<GlobeTrek.Controllers.TourPromotionViewModel>
+
+@{
+    ViewBag.Title = "Tour Giảm Giá";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .discount-price {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>@ViewBag.Title</h2>
+
+    @if (Model.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên Tour</th>
+                    <th>Giá Gốc</th>
+                    <th>Giá Giảm</th>
+                    <th>Ngày Bắt Đầu</th>
+                    <th>Ngày Kết Thúc</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.TourName</td>
+                        <td>@item.OriginalPrice.ToString("N0") VNĐ</td>
+                        <td class="discount-price">@item.DiscountedPrice.ToString("N0") VNĐ</td>
+                        <td>@item.StartDate.ToString("dd/MM/yyyy")</td>
+                        <td>@item.EndDate.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Hiện tại không có tour giảm giá nào.</p>
+    }
+</body>
+</html>

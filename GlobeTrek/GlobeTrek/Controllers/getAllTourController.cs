@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Windows.Forms;
 using GlobeTrek.Models;
 
 namespace GlobeTrek.Controllers
@@ -15,9 +12,6 @@ namespace GlobeTrek.Controllers
     public class getAllTourController : Controller
     {
         private TravelDBEntities db = new TravelDBEntities();
-
-
-
 
         // GET: getAllTour
         public ActionResult Index()
@@ -27,9 +21,8 @@ namespace GlobeTrek.Controllers
                 .Include(t => t.TourType)
                 .Where(t => t.isDisabled == true && t.isApproved == true)
                 .ToList();
-            return View(tours.ToList());
+            return View(tours);
         }
-
 
         public ActionResult GetToursByTypeAndDestination(int tourTypeId, int destinationId)
         {
@@ -45,9 +38,10 @@ namespace GlobeTrek.Controllers
             return View("Index", tours);
         }
 
-        public ActionResult Details(int id)
+        // Sử dụng slug thay vì id
+        public ActionResult Details(string slug)
         {
-            if (id == 0)
+            if (string.IsNullOrEmpty(slug))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -56,7 +50,7 @@ namespace GlobeTrek.Controllers
                 .Include(t => t.TourType)
                 .Include(t => t.Destination)
                 .Include(t => t.TourAvailabilities)
-                .FirstOrDefault(t => t.id == id);
+                .FirstOrDefault(t => t.slug == slug);
 
             if (tour == null)
             {
@@ -79,7 +73,7 @@ namespace GlobeTrek.Controllers
             var tours = db.Tours
                 .Include(t => t.TourType)
                 .ToList();
-            var tourTypes = db.TourTypes.ToList();
+
             // Lọc theo tên
             if (!string.IsNullOrEmpty(search))
             {
@@ -108,14 +102,14 @@ namespace GlobeTrek.Controllers
             return View(tours);
         }
 
-        public ActionResult Booking(int? id)
+        public ActionResult Booking(string slug)
         {
-            if (id == null || id == 0)
+            if (string.IsNullOrEmpty(slug))
             {
-                return RedirectToAction("Index", "Tour"); // Điều hướng nếu thiếu tourId
+                return RedirectToAction("Index", "getAllTour"); // Điều hướng nếu thiếu slug
             }
 
-            var tour = db.Tours.Find(id.Value); // Lấy 1 tour theo ID
+            var tour = db.Tours.FirstOrDefault(t => t.slug == slug); // Lấy tour theo slug
 
             if (tour == null)
             {
@@ -124,7 +118,6 @@ namespace GlobeTrek.Controllers
 
             return View(tour); // Trả về object Tour cho view
         }
-
 
         // POST: FavoriteTours/AddFavorite
         [HttpPost]
@@ -159,5 +152,13 @@ namespace GlobeTrek.Controllers
             return Json(new { success = true, message = "Đã thêm tour vào danh sách yêu thích." });
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

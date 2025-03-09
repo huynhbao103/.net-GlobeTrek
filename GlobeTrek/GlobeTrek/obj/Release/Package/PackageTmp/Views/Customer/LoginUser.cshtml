@@ -1,0 +1,87 @@
+﻿@model GlobeTrek.Models.User
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_headerLayout.cshtml";
+}
+
+<h2>Đăng nhập</h2>
+<div class="mt-2 p-5" style="background-color: rgba(174, 249, 231, 0.2);">
+    <div class="container mt-5 p-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white text-center">
+                        <h2 class="mb-0">Đăng Nhập</h2>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("LoginUser", "Customer", FormMethod.Post, new { id = "loginForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="mb-3">
+                                @Html.LabelFor(model => model.email, "Email", new { @class = "form-label fw-bold" })
+                                @Html.TextBoxFor(model => model.email, new { @class = "form-control", placeholder = "Nhập email", required = "required" })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(model => model.password, "Mật Khẩu", new { @class = "form-label fw-bold" })
+                                @Html.PasswordFor(model => model.password, new { @class = "form-control", placeholder = "Nhập mật khẩu", required = "required" })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100">Đăng Nhập</button>
+                            <p id="loginMessage" class="mt-2 text-center"></p>
+                        }
+
+                        <div class="text-center mt-3">
+                            <p>Chưa có tài khoản? <a href='@Url.Action("Create", "Customer")'>Đăng ký ngay</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault(); // Ngăn submit mặc định
+
+                $.ajax({
+                    url: '@Url.Action("LoginUser", "Customer")',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#message').html('<span style="color:green;">Đăng nhập thành công!</span>');
+                            // Lưu thông tin vào localStorage
+                            localStorage.setItem("UserID", response.userId);
+                            localStorage.setItem("UserName", response.userName);
+                            localStorage.setItem("UserRole", "User"); // Role cố định vì controller không trả về role
+
+                            // Chuyển hướng sau 1 giây
+                            setTimeout(function () {
+                                window.location.href = '/';
+                            }, 1000);
+                        } else {
+                            $('#message').html('<span style="color:red;">' + response.message + '</span>');
+                        }
+                    },
+                    error: function () {
+                        $('#message').html('<span style="color:red;">Có lỗi xảy ra khi đăng nhập!</span>');
+                    }
+                });
+            });
+        });
+    </script>
+}

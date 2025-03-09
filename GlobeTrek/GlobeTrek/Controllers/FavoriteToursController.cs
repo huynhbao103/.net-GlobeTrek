@@ -9,6 +9,10 @@ namespace GlobeTrek.Controllers
 {
     public class FavoriteToursController : Controller
     {
+        //traveldbentities.database.windows.net
+        //traveldbentities
+        //Bao0907670054.
+
         private TravelDBEntities db = new TravelDBEntities();
 
         // GET: FavoriteTours/Index
