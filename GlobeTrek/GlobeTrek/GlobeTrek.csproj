@@ -480,6 +480,7 @@
     <Content Include="Areas\Admin\Views\Promotion\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Promotion\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Promotion\Edit.cshtml" />
+    <None Include="Properties\PublishProfiles\GlobeTrek - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
