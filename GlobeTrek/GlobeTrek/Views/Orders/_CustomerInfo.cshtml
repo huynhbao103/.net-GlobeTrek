@@ -1,115 +1,114 @@
-﻿<div class="container mt-4">
+﻿@model GlobeTrek.Models.Order
+
+<div class="container mt-4">
     <div class="card shadow-sm p-4">
-        <h4 class="mb-3 text-center">Nhập Thông Tin Khách Hàng</h4>
+        <h4 class="mb-3 text-center">Thông Tin Khách Hàng</h4>
 
-        <div class="mb-3">
-            <label for="fullName" class="form-label fw-semibold">Họ và Tên</label>
-            <input type="text" id="fullName" class="form-control rounded-pill" placeholder="Nhập họ và tên" />
-            <p id="displayFullName" class="fw-bold d-none"></p>
-            <div class="text-danger mt-1" id="errorFullName"></div>
-        </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label fw-semibold">Email</label>
-            <input type="email" id="email" class="form-control rounded-pill" placeholder="Nhập email" />
-            <p id="displayEmail" class="fw-bold d-none"></p>
-            <div class="text-danger mt-1" id="errorEmail"></div>
-        </div>
-
-        <div class="mb-3">
-            <label for="phone" class="form-label fw-semibold">Số điện thoại</label>
-            <input type="text" id="phone" class="form-control rounded-pill" placeholder="Nhập số điện thoại" />
-            <p id="displayPhone" class="fw-bold d-none"></p>
-            <div class="text-danger mt-1" id="errorPhone"></div>
-        </div>
-
-        <div class="text-center">
-            <button type="button" class="btn btn-success px-4 py-2 rounded-pill shadow-sm" onclick="handleSaveContactInfo()" id="saveBtn">Lưu Thông Tin</button>
-            <button type="button" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm d-none" onclick="editContactInfo()" id="editBtn">Chỉnh Sửa</button>
-        </div>
+        @if (ViewBag.HasCustomerInfo == true)
+        {
+            var customerInfo = (GlobeTrek.Models.CustomerInfo)ViewBag.CustomerInfo;
+            <h5 class="mb-3">Thông tin đã lưu:</h5>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Họ và tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@customerInfo.fullName</td>
+                        <td>@customerInfo.phone</td>
+                        <td>@customerInfo.email</td>
+                        <td>
+                            <a href="@Url.Action("EditCustomerInfo", "Customer", new { id = customerInfo.id })" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil"></i> Sửa
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button type="button" class="btn btn-success px-4 py-2 rounded-pill shadow-sm" id="confirmButton" onclick="validateAndSetCustomerInfo(this)">Xác Nhận</button>
+            </div>
+        }
+        else
+        {
+            <div class="mb-3">
+                <label for="fullName" class="form-label fw-semibold">Họ và Tên</label>
+                <input type="text" id="fullName" class="form-control rounded-pill" placeholder="Nhập họ và tên" required="required" />
+                <div class="text-danger mt-1" id="errorFullName"></div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label fw-semibold">Email</label>
+                <input type="email" id="email" class="form-control rounded-pill" placeholder="Nhập email" required="required" />
+                <div class="text-danger mt-1" id="errorEmail"></div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label fw-semibold">Số điện thoại</label>
+                <input type="text" id="phone" class="form-control rounded-pill" placeholder="Nhập số điện thoại" required="required" />
+                <div class="text-danger mt-1" id="errorPhone"></div>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-success px-4 py-2 rounded-pill shadow-sm" id="confirmButton" onclick="validateAndSetCustomerInfo(this)">Xác Nhận</button>
+            </div>
+        }
     </div>
 </div>
+
 @Html.Raw(@"
-<script>
-  function validatePhoneNumber(phone) {
-    return phone.startsWith('0') && phone.length === 10;
-  }
+<script type='text/javascript'>
+    function validateAndSetCustomerInfo(button) {
+        console.log('validateAndSetCustomerInfo called');
+        var fullName = $('#fullName').length ? $('#fullName').val() : $('#hiddenFullName').val();
+        var email = $('#email').length ? $('#email').val() : $('#hiddenEmail').val();
+        var phone = $('#phone').length ? $('#phone').val() : $('#hiddenPhone').val();
 
-  function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
+        console.log('FullName:', fullName, 'Email:', email, 'Phone:', phone);
 
-  function handleSaveContactInfo() {
-    const fullName = document.getElementById('fullName').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
+        $('#errorFullName').text('');
+        $('#errorEmail').text('');
+        $('#errorPhone').text('');
 
-    document.getElementById('errorFullName').innerText = '';
-    document.getElementById('errorEmail').innerText = '';
-    document.getElementById('errorPhone').innerText = '';
+        var hasError = false;
 
-    let hasError = false;
+        if (!fullName) {
+            $('#errorFullName').text('Họ và tên không được để trống!');
+            hasError = true;
+        }
+        if (!validateEmail(email)) {
+            $('#errorEmail').text('Email không hợp lệ!');
+            hasError = true;
+        }
+        if (!validatePhoneNumber(phone)) {
+            $('#errorPhone').text('Số điện thoại phải bắt đầu bằng 0 và có 10 chữ số!');
+            hasError = true;
+        }
 
-    if (!fullName) {
-      document.getElementById('errorFullName').innerText = 'Họ và tên không được để trống!';
-      hasError = true;
+        if (!hasError) {
+            $('#hiddenFullName').val(fullName);
+            $('#hiddenEmail').val(email);
+            $('#hiddenPhone').val(phone);
+
+            $(button).prop('disabled', true).text('Đã Xác Nhận').removeClass('btn-success').addClass('btn-secondary');
+            alert('Thông tin khách hàng đã được xác nhận thành công!');
+            setTimeout(function () {
+                $(button).prop('disabled', false).text('Xác Nhận').removeClass('btn-secondary').addClass('btn-success');
+            }, 2000);
+        } else {
+            alert('Vui lòng kiểm tra lại thông tin!');
+        }
     }
 
-    if (!validateEmail(email)) {
-      document.getElementById('errorEmail').innerText = 'Email không hợp lệ!';
-      hasError = true;
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 
-    if (!validatePhoneNumber(phone)) {
-      document.getElementById('errorPhone').innerText = 'Số điện thoại phải bắt đầu bằng 0 và có 10 chữ số!';
-      hasError = true;
+    function validatePhoneNumber(phone) {
+        return phone && phone.startsWith('0') && phone.length === 10;
     }
-
-    if (!hasError) {
-      localStorage.setItem('customerInfo', JSON.stringify({ fullName, email, phone }));
-
-// Hiển thị thông tin
-document.getElementById('displayFullName').innerText = fullName;
-document.getElementById('displayEmail').innerText = email;
-document.getElementById('displayPhone').innerText = phone;
-
-      // Ẩn input và hiện thẻ p
-      document.getElementById('fullName').classList.add('d-none');
-      document.getElementById('email').classList.add('d-none');
-      document.getElementById('phone').classList.add('d-none');
-
-// Ẩn input và hiện thẻ p
-document.getElementById('displayFullName').classList.remove('d-none');
-document.getElementById('displayEmail').classList.remove('d-none');
-document.getElementById('displayPhone').classList.remove('d-none');
-
-      // Ẩn input và hiện thẻ p
-      document.getElementById('displayFullName').classList.remove('d-none');
-      document.getElementById('displayEmail').classList.remove('d-none');
-      document.getElementById('displayPhone').classList.remove('d-none');
-
-      document.getElementById('displayFullName').classList.remove('d-none');
-      document.getElementById('displayEmail').classList.remove('d-none');
-      document.getElementById('displayPhone').classList.remove('d-none');
-
-      document.getElementById('saveBtn').classList.add('d-none');
-      document.getElementById('editBtn').classList.remove('d-none');
-    }
-  }
-
-  function editContactInfo()
-{
-    // Hiện lại input, ẩn thẻ p
-    document.getElementById('fullName').classList.remove('d-none');
-    document.getElementById('email').classList.remove('d-none');
-    document.getElementById('phone').classList.remove('d-none');
-
-    document.getElementById('displayFullName').classList.add('d-none');
-    document.getElementById('displayEmail').classList.add('d-none');
-    document.getElementById('displayPhone').classList.add('d-none');
-    document.getElementById('saveBtn').classList.remove('d-none');
-    document.getElementById('editBtn').classList.add('d-none');
-  }
 </script>
 ")

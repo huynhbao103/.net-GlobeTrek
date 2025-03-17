@@ -350,9 +350,6 @@
     <Compile Include="Models\Revenue.cs">
       <DependentUpon>TravelDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>TravelDBEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Tour.cs">
       <DependentUpon>TravelDBEntities.tt</DependentUpon>
     </Compile>
@@ -380,7 +377,6 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>TravelDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -469,6 +465,10 @@
     <Content Include="Areas\Admin\Views\Tours\PendingTours.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\DeleteRequests.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotion\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotion\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotion\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotion\Edit.cshtml" />
     <EntityDeploy Include="Models\TravelDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TravelDBEntities.Designer.cs</LastGenOutput>
@@ -476,10 +476,6 @@
     <Content Include="Models\TravelDBEntities.edmx.diagram">
       <DependentUpon>TravelDBEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Promotion\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Promotion\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Promotion\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Promotion\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\GlobeTrek - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -523,6 +519,8 @@
     <Content Include="Views\Customer\ResetPassword.cshtml" />
     <Content Include="Views\Customer\ForgotPassword.cshtml" />
     <Content Include="Views\Promotions\Index.cshtml" />
+    <Content Include="Views\Customer\AddCustomerInfo.cshtml" />
+    <Content Include="Views\Customer\EditCustomerInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

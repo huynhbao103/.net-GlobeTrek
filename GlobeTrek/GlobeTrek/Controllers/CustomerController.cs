@@ -62,7 +62,7 @@ namespace GlobeTrek.Controllers
             var user = db.Users.FirstOrDefault(u => u.email == email);
             if (user != null && Crypto.VerifyHashedPassword(user.password, password))
             {
-      
+
                 FormsAuthentication.SetAuthCookie(user.id.ToString(), false);
                 Session["UserName"] = user.username;  // Lưu tên người dùng vào session
                 Session["UserID"] = user.id;          // Lưu ID người dùng vào session
@@ -89,7 +89,6 @@ namespace GlobeTrek.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            // Kiểm tra xem người dùng có quyền chỉnh sửa thông tin của họ không
             if ((int)Session["UserID"] != id)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
@@ -110,10 +109,17 @@ namespace GlobeTrek.Controllers
         {
             if (ModelState.IsValid)
             {
-                var existingUser = db.Users.Find(user.id);
+                int userId = user.id;
+                if (Session["UserID"] != null && (int)Session["UserID"] != userId)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                }
+
+                var existingUser = db.Users.FirstOrDefault(u => u.id == userId);
                 if (existingUser != null)
                 {
                     existingUser.username = user.username;
+                    existingUser.email = user.email;
                     existingUser.updatedAt = DateTime.Now;
 
                     if (!string.IsNullOrEmpty(user.password) && user.password.Length >= 6)
@@ -122,15 +128,195 @@ namespace GlobeTrek.Controllers
                     }
 
                     db.Entry(existingUser).State = EntityState.Modified;
-                    db.SaveChanges();
 
-                    return RedirectToAction("Index", "getAllTour");
+                    try
+                    {
+                        db.SaveChanges();
+                        TempData["SuccessMessage"] = "Cập nhật thông tin tài khoản thành công.";
+                        Session["UserName"] = existingUser.username;
+                        return RedirectToAction("Index", "getAllTour");
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "Lỗi khi lưu thông tin tài khoản: " + ex.Message);
+                        return View(user);
+                    }
                 }
+                return HttpNotFound();
             }
-
             return View(user);
         }
 
+
+        public ActionResult AddCustomerInfo()
+        {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("LoginUser", "Customer");
+            }
+
+            int userId = (int)Session["UserID"];
+            var user = db.Users.Find(userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Kiểm tra xem đã có CustomerInfo cho userId này chưa
+            var customerInfo = db.CustomerInfoes.FirstOrDefault(ci => ci.userId == userId);
+            ViewBag.CustomerInfo = customerInfo; // Truyền CustomerInfo vào ViewBag
+            ViewBag.UserEmail = user.email;      // Truyền email của User
+            ViewBag.UserName = user.username;    // Truyền username của User
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCustomerInfo(int userId, string fullName, string phone, string email)
+        {
+            if (Session["UserID"] == null || (int)Session["UserID"] != userId)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
+            var user = db.Users.Find(userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Kiểm tra xem đã có CustomerInfo chưa
+            if (db.CustomerInfoes.Any(ci => ci.userId == userId))
+            {
+                TempData["ErrorMessage"] = "Bạn đã thêm thông tin khách hàng rồi. Vui lòng sửa hoặc xóa thông tin hiện tại.";
+                return RedirectToAction("AddCustomerInfo");
+            }
+
+            // Kiểm tra dữ liệu đầu vào
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(phone))
+            {
+                ModelState.AddModelError("", "Vui lòng nhập đầy đủ họ tên và số điện thoại.");
+                ViewBag.UserEmail = user.email;
+                ViewBag.UserName = user.username; // Truyền lại UserName
+                return View();
+            }
+
+            // Thêm bản ghi CustomerInfo mới
+            var newCustomerInfo = new CustomerInfo
+            {
+                userId = userId,
+                fullName = fullName,
+                phone = phone,
+                email = user.email, // Đồng bộ email từ User
+                orderId = null
+            };
+            db.CustomerInfoes.Add(newCustomerInfo);
+
+            try
+            {
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "Thêm thông tin khách hàng thành công.";
+                return RedirectToAction("AddCustomerInfo"); // Quay lại để hiển thị thông tin vừa thêm
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Lỗi khi thêm thông tin khách hàng: " + ex.Message;
+                ViewBag.UserEmail = user.email;
+                ViewBag.UserName = user.username; // Truyền lại UserName
+                return View();
+            }
+        }
+
+
+        public ActionResult EditCustomerInfo(int id)
+        {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("LoginUser", "Customer");
+            }
+
+            var customerInfo = db.CustomerInfoes.Find(id);
+            if (customerInfo == null || customerInfo.userId != (int)Session["UserID"])
+            {
+                return HttpNotFound();
+            }
+
+            var user = db.Users.Find(customerInfo.userId);
+            ViewBag.UserEmail = user.email;
+            return View(customerInfo);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCustomerInfo(int id, string fullName, string phone)
+        {
+            if (Session["UserID"] == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
+            var customerInfo = db.CustomerInfoes.Find(id);
+            if (customerInfo == null || customerInfo.userId != (int)Session["UserID"])
+            {
+                return HttpNotFound();
+            }
+
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(phone))
+            {
+                ModelState.AddModelError("", "Vui lòng nhập đầy đủ họ tên và số điện thoại.");
+                var user = db.Users.Find(customerInfo.userId);
+                ViewBag.UserEmail = user.email;
+                return View(customerInfo);
+            }
+
+            customerInfo.fullName = fullName;
+            customerInfo.phone = phone;
+            db.Entry(customerInfo).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "Cập nhật thông tin khách hàng thành công.";
+                return RedirectToAction("AddCustomerInfo");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Lỗi khi cập nhật thông tin khách hàng: " + ex.Message;
+                var user = db.Users.Find(customerInfo.userId);
+                ViewBag.UserEmail = user.email;
+                return View(customerInfo);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCustomerInfo(int id)
+        {
+            if (Session["UserID"] == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
+            var customerInfo = db.CustomerInfoes.Find(id);
+            if (customerInfo == null || customerInfo.userId != (int)Session["UserID"])
+            {
+                return HttpNotFound();
+            }
+
+            db.CustomerInfoes.Remove(customerInfo);
+            try
+            {
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "Xóa thông tin khách hàng thành công.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Lỗi khi xóa thông tin khách hàng: " + ex.Message;
+            }
+
+            return RedirectToAction("AddCustomerInfo");
+        }
 
         // Hiển thị form quên mật khẩu
         public ActionResult ForgotPassword()
@@ -242,7 +428,7 @@ namespace GlobeTrek.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)  
+            if (disposing)
             {
                 db.Dispose();
             }

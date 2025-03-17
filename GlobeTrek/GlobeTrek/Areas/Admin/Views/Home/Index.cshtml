@@ -1,18 +1,307 @@
-﻿@{
+﻿@model List<GlobeTrek.Models.Order>
+
+@{
+    ViewBag.Title = "Admin Dashboard";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="container-fluid py-4">
+    <h2 class="text-primary fw-bold mb-4">Admin Dashboard</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Home</title>
-</head>
-<body>
-    <div>
-        Admin home
-
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h3 class="text-dark fw-semibold">Tổng Doanh Thu</h3>
+                    @if (ViewBag.TotalRevenue != null && ViewBag.TotalRevenue > 0)
+                    {
+                        <p class="fs-4 text-success fw-bold mb-0">@String.Format("{0:N0} VND", ViewBag.TotalRevenue)</p>
+                        <small class="text-muted">Tổng doanh thu từ các đơn hàng "Paid"</small>
+                    }
+                    else
+                    {
+                        <p class="text-muted">Không có đơn hàng nào có trạng thái "Paid".</p>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h4 class="text-dark fw-semibold mb-3">Doanh Thu Theo Ngày</h4>
+                    <canvas id="revenueByDayChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h4 class="text-dark fw-semibold mb-3">Doanh Thu Theo Tuần</h4>
+                    <canvas id="revenueByWeekChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h4 class="text-dark fw-semibold mb-3">Doanh Thu Theo Tháng</h4>
+                    <canvas id="revenueByMonthChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h4 class="text-dark fw-semibold mb-3">Doanh Thu Theo Năm</h4>
+                    <canvas id="revenueByYearChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h4 class="text-dark fw-semibold mb-3">Doanh Thu Theo Tour</h4>
+                    <canvas id="revenueByTourChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h4 class="text-dark fw-semibold mb-3">Doanh Thu Theo Phương Thức Thanh Toán</h4>
+                    <canvas id="revenueByPaymentMethodChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- CDN chính từ Cloudflare -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.2/chart.umd.min.js" integrity="sha512-wXvRKMG0sd9WycYNoY0PaXtwT0lBjeKSGmlHH4JqLpqIQF6lPAPWbfL5NSNDX+5fV9gHouIuLRTFlTzh4WqSVEZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Fallback tải cục bộ nếu CDN thất bại -->
+    <script>
+        window.Chart || document.write('<script src="~/Scripts/chart.min.js"><\/script>');
+    </script>
+
+    <style>
+        .card {
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        .text-dark {
+            color: #343a40 !important;
+        }
+
+        .text-primary {
+            color: #007bff !important;
+        }
+
+        .fs-4 {
+            font-size: 1.5rem !important;
+        }
+
+        canvas {
+            height: 300px !important;
+            width: 100% !important;
+        }
+    </style>
+
+    <script>
+        // Đợi DOM sẵn sàng
+        document.addEventListener('DOMContentLoaded', function () {
+            // Kiểm tra Chart.js
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js không tải được từ CDN hoặc cục bộ. Kiểm tra kết nối hoặc thêm file chart.min.js vào ~/Scripts.');
+                return;
+            } else {
+                console.log('Chart.js đã tải thành công.');
+            }
+
+            // Dữ liệu từ ViewBag
+            const revenueByDayData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueByDay));
+            const revenueByWeekData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueByWeek));
+            const revenueByMonthData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueByMonth));
+            const revenueByYearData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueByYear));
+            const revenueByTourData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueByTour));
+            const revenueByPaymentMethodData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueByPaymentMethod));
+
+            // Log dữ liệu để kiểm tra
+            console.log('Revenue by Day:', revenueByDayData);
+            console.log('Revenue by Week:', revenueByWeekData);
+            console.log('Revenue by Month:', revenueByMonthData);
+            console.log('Revenue by Year:', revenueByYearData);
+            console.log('Revenue by Tour:', revenueByTourData);
+            console.log('Revenue by Payment Method:', revenueByPaymentMethodData);
+
+            // Biểu đồ Doanh thu theo ngày
+            if (revenueByDayData && revenueByDayData.length > 0) {
+                new Chart(document.getElementById('revenueByDayChart'), {
+                    type: 'line',
+                    data: {
+                        labels: revenueByDayData.map(item => new Date(item.Item1).toLocaleDateString('vi-VN')),
+                        datasets: [{
+                            label: 'Doanh thu (VND)',
+                            data: revenueByDayData.map(item => item.Item2),
+                            borderColor: '#007bff',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { callback: value => value.toLocaleString('vi-VN') + ' VND' }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn('Không có dữ liệu cho Revenue by Day.');
+            }
+
+            // Biểu đồ Doanh thu theo tuần
+            if (revenueByWeekData && revenueByWeekData.length > 0) {
+                new Chart(document.getElementById('revenueByWeekChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: revenueByWeekData.map(item => `Tuần ${item.Item1}`),
+                        datasets: [{
+                            label: 'Doanh thu (VND)',
+                            data: revenueByWeekData.map(item => item.Item2),
+                            backgroundColor: '#28a745',
+                            borderColor: '#28a745',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { callback: value => value.toLocaleString('vi-VN') + ' VND' }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn('Không có dữ liệu cho Revenue by Week.');
+            }
+
+            // Biểu đồ Doanh thu theo tháng
+            if (revenueByMonthData && revenueByMonthData.length > 0) {
+                new Chart(document.getElementById('revenueByMonthChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: revenueByMonthData.map(item => item.Item1),
+                        datasets: [{
+                            label: 'Doanh thu (VND)',
+                            data: revenueByMonthData.map(item => item.Item2),
+                            backgroundColor: '#17a2b8',
+                            borderColor: '#17a2b8',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { callback: value => value.toLocaleString('vi-VN') + ' VND' }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn('Không có dữ liệu cho Revenue by Month.');
+            }
+
+            // Biểu đồ Doanh thu theo năm
+            if (revenueByYearData && revenueByYearData.length > 0) {
+                new Chart(document.getElementById('revenueByYearChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: revenueByYearData.map(item => item.Item1),
+                        datasets: [{
+                            label: 'Doanh thu (VND)',
+                            data: revenueByYearData.map(item => item.Item2),
+                            backgroundColor: '#ffc107',
+                            borderColor: '#ffc107',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { callback: value => value.toLocaleString('vi-VN') + ' VND' }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn('Không có dữ liệu cho Revenue by Year.');
+            }
+
+            // Biểu đồ Doanh thu theo Tour (dùng title thay vì tourId)
+            if (revenueByTourData && revenueByTourData.length > 0) {
+                new Chart(document.getElementById('revenueByTourChart'), {
+                    type: 'pie',
+                    data: {
+                        labels: revenueByTourData.map(item => item.Item1), // Hiển thị title trực tiếp
+                        datasets: [{
+                            label: 'Doanh thu (VND)',
+                            data: revenueByTourData.map(item => item.Item2),
+                            backgroundColor: ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8'],
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: context => `${context.label}: ${context.raw.toLocaleString('vi-VN')} VND`
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn('Không có dữ liệu cho Revenue by Tour.');
+            }
+
+            // Biểu đồ Doanh thu theo Phương thức thanh toán
+            if (revenueByPaymentMethodData && revenueByPaymentMethodData.length > 0) {
+                new Chart(document.getElementById('revenueByPaymentMethodChart'), {
+                    type: 'pie',
+                    data: {
+                        labels: revenueByPaymentMethodData.map(item => item.Item1),
+                        datasets: [{
+                            label: 'Doanh thu (VND)',
+                            data: revenueByPaymentMethodData.map(item => item.Item2),
+                            backgroundColor: ['#007bff', '#28a745', '#dc3545', '#ffc107'],
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: context => `${context.label}: ${context.raw.toLocaleString('vi-VN')} VND`
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn('Không có dữ liệu cho Revenue by Payment Method.');
+            }
+        });
+    </script>
+}

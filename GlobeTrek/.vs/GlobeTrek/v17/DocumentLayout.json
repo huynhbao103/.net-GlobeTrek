@@ -3,40 +3,168 @@
   "WorkspaceRootPath": "D:\\Code\\VisualStudio\\GlobeTrek\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\destinationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\destinationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\controllers\\favoritetourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\controllers\\favoritetourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\filters\\adminauthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\filters\\adminauthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\promotionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\promotionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\controllers\\promotionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\tourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\tourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\tourtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\tourtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\models\\revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\models\\revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\shared\\_headerlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\shared\\_headerlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\orders\\_customerinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\orders\\_customerinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\orders\\createorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\orders\\createorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\controllers\\promotionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\controllers\\promotionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\controllers\\favoritetourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\controllers\\favoritetourscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\controllers\\getalltourcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\controllers\\getalltourcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\controllers\\getalltourcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\properties\\publishprofiles\\globetrek - web deploy.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\properties\\publishprofiles\\globetrek - web deploy.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\customer\\addcustomerinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\customer\\addcustomerinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\content\\bootstrap-reboot.css.map||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\customer\\editcustomerinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\customer\\editcustomerinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\customer\\loginuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\customer\\loginuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\customer\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\customer\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\customer\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\customer\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\favoritetours\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\favoritetours\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\customer\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\customer\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\models\\traveldbentities.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\models\\traveldbentities.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\getalltour\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\getalltour\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\models\\paypalconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\models\\paypalconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\orders\\myorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\orders\\myorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\areas\\admin\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\areas\\admin\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\views\\getalltour\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\views\\getalltour\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\filters\\adminauthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\filters\\adminauthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\globetrek\\content\\bootstrap-reboot.css.map||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\content\\bootstrap-reboot.css.map||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|d:\\code\\visualstudio\\globetrek\\globetrek\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:globetrek\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:GlobeTrek\\Models\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\FavoriteTour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:GlobeTrek\\Models\\FavoriteTour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\TourAvailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9ADCF14-F696-4F8D-9BD5-943DF7D3C233}|GlobeTrek\\GlobeTrek.csproj|solutionrelative:GlobeTrek\\Models\\TourAvailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,89 +174,492 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AdminAuthorize.cs",
-              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Filters\\AdminAuthorize.cs",
-              "RelativeDocumentMoniker": "GlobeTrek\\Filters\\AdminAuthorize.cs",
-              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Filters\\AdminAuthorize.cs",
-              "RelativeToolTip": "GlobeTrek\\Filters\\AdminAuthorize.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T18:15:03.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PromotionsController.cs",
-              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\PromotionsController.cs",
-              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\PromotionsController.cs",
-              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\PromotionsController.cs",
-              "RelativeToolTip": "GlobeTrek\\Controllers\\PromotionsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T18:13:49.905Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CustomerController.cs",
-              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\CustomerController.cs",
-              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\CustomerController.cs",
-              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\CustomerController.cs",
-              "RelativeToolTip": "GlobeTrek\\Controllers\\CustomerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T17:24:10.485Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T18:50:21.615Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "getAllTourController.cs",
-              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\getAllTourController.cs",
-              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\getAllTourController.cs",
-              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\getAllTourController.cs",
-              "RelativeToolTip": "GlobeTrek\\Controllers\\getAllTourController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAcwBIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T17:07:40.849Z",
-              "EditorCaption": ""
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Views\\Orders\\Index.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Views\\Orders\\Index.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Views\\Orders\\Index.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Views\\Orders\\Index.cshtml",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAqwAUBAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T23:26:22.88Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FavoriteToursController.cs",
-              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\FavoriteToursController.cs",
-              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\FavoriteToursController.cs",
-              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\FavoriteToursController.cs",
-              "RelativeToolTip": "GlobeTrek\\Controllers\\FavoriteToursController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "TourTypesController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\TourTypesController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\TourTypesController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\TourTypesController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\TourTypesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T17:07:40.331Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T18:50:28.919Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Models\\Order.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\Order.cs",
+              "RelativeToolTip": "GlobeTrek\\Models\\Order.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwCMAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T17:13:55.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DestinationController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\DestinationController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\DestinationController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\DestinationController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\DestinationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:50:24.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Revenue.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\Revenue.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Models\\Revenue.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\Revenue.cs",
+              "RelativeToolTip": "GlobeTrek\\Models\\Revenue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T23:39:37.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Web.config",
               "RelativeDocumentMoniker": "GlobeTrek\\Web.config",
               "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Web.config",
               "RelativeToolTip": "GlobeTrek\\Web.config",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAAAJgAAABPAAAAAAAAAA==",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAQwI4AAACeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2025-03-09T16:56:11.294Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwD4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:50:23.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAABQBAAAAAAAAAAAgwDIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T23:08:01.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\OrdersController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAQwFIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T15:39:42.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PromotionsController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\PromotionsController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\PromotionsController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\PromotionsController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\PromotionsController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwBUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:50:25.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ToursController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\ToursController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\ToursController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\ToursController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\ToursController.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAiwBgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:50:27.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_headerLayout.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Shared\\_headerLayout.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Shared\\_headerLayout.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Shared\\_headerLayout.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Shared\\_headerLayout.cshtml",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAgwHsAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T18:49:33.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "_CustomerInfo.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Orders\\_CustomerInfo.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Orders\\_CustomerInfo.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Orders\\_CustomerInfo.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Orders\\_CustomerInfo.cshtml",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAkwGsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T21:26:18.257Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CreateOrder.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Orders\\CreateOrder.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Orders\\CreateOrder.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Orders\\CreateOrder.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Orders\\CreateOrder.cshtml",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAgwJgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T21:26:17.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T21:13:46.021Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\OrdersController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "GlobeTrek\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAPoAAAAAAAAAAAAwwBEBAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T14:14:58.087Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PromotionsController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\PromotionsController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\PromotionsController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\PromotionsController.cs",
+              "RelativeToolTip": "GlobeTrek\\Controllers\\PromotionsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:13:49.905Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "getAllTourController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\getAllTourController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\getAllTourController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\getAllTourController.cs",
+              "RelativeToolTip": "GlobeTrek\\Controllers\\getAllTourController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T17:07:40.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AddCustomerInfo.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\AddCustomerInfo.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Customer\\AddCustomerInfo.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\AddCustomerInfo.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Customer\\AddCustomerInfo.cshtml",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAowGwAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T18:48:35.372Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\CustomerController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "GlobeTrek\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAI4BAAAAAAAAAAAowK4BAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T17:24:10.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "FavoriteToursController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\FavoriteToursController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Controllers\\FavoriteToursController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Controllers\\FavoriteToursController.cs",
+              "RelativeToolTip": "GlobeTrek\\Controllers\\FavoriteToursController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAowEQAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T17:07:40.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\Create.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Customer\\Create.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\Create.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Customer\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T15:38:46.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Web.config",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Web.config",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Web.config",
+              "RelativeToolTip": "GlobeTrek\\Views\\Web.config",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACUAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-15T21:12:27.837Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\Edit.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Customer\\Edit.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\Edit.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Customer\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T14:10:36.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LoginUser.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\LoginUser.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Customer\\LoginUser.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\LoginUser.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Customer\\LoginUser.cshtml",
+              "ViewState": "AgIAACwAAAAAAAAAAAAowEoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T20:22:00.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "EditCustomerInfo.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\EditCustomerInfo.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Customer\\EditCustomerInfo.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\EditCustomerInfo.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Customer\\EditCustomerInfo.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAD0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T18:59:42.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\FavoriteTours\\Index.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\FavoriteTours\\Index.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\FavoriteTours\\Index.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\FavoriteTours\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T21:00:49.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Customer\\ForgotPassword.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Customer\\ForgotPassword.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Customer\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T20:39:46.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "TravelDBEntities.edmx [Diagram1]",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\TravelDBEntities.edmx",
+              "RelativeDocumentMoniker": "GlobeTrek\\Models\\TravelDBEntities.edmx",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\TravelDBEntities.edmx [Diagram1]",
+              "RelativeToolTip": "GlobeTrek\\Models\\TravelDBEntities.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-03-15T18:46:00.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\getAllTour\\Details.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\getAllTour\\Details.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\getAllTour\\Details.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\getAllTour\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T13:42:26.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\User.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Models\\User.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\User.cs",
+              "RelativeToolTip": "GlobeTrek\\Models\\User.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAwB8AAAB7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T15:40:40.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "FavoriteTour.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\FavoriteTour.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Models\\FavoriteTour.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\FavoriteTour.cs",
+              "RelativeToolTip": "GlobeTrek\\Models\\FavoriteTour.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T17:23:38.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "TourAvailability.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\TourAvailability.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Models\\TourAvailability.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\TourAvailability.cs",
+              "RelativeToolTip": "GlobeTrek\\Models\\TourAvailability.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T17:08:49.299Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "MyOrders.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Orders\\MyOrders.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\Orders\\MyOrders.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\Orders\\MyOrders.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\Orders\\MyOrders.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAGYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T16:33:29.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PaypalConfiguration.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\PaypalConfiguration.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Models\\PaypalConfiguration.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Models\\PaypalConfiguration.cs",
+              "RelativeToolTip": "GlobeTrek\\Models\\PaypalConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAACGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T19:04:19.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Areas\\Admin\\Controllers\\UsersController.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Areas\\Admin\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "GlobeTrek\\Areas\\Admin\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:50:30.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\getAllTour\\Index.cshtml",
+              "RelativeDocumentMoniker": "GlobeTrek\\Views\\getAllTour\\Index.cshtml",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Views\\getAllTour\\Index.cshtml",
+              "RelativeToolTip": "GlobeTrek\\Views\\getAllTour\\Index.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-15T13:42:27.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "BundleConfig.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\App_Start\\BundleConfig.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\App_Start\\BundleConfig.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\App_Start\\BundleConfig.cs",
+              "RelativeToolTip": "GlobeTrek\\App_Start\\BundleConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:50:16.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "AdminAuthorize.cs",
+              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Filters\\AdminAuthorize.cs",
+              "RelativeDocumentMoniker": "GlobeTrek\\Filters\\AdminAuthorize.cs",
+              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Filters\\AdminAuthorize.cs",
+              "RelativeToolTip": "GlobeTrek\\Filters\\AdminAuthorize.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T18:15:03.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
               "Title": "bootstrap-reboot.css.map",
               "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Content\\bootstrap-reboot.css.map",
               "RelativeDocumentMoniker": "GlobeTrek\\Content\\bootstrap-reboot.css.map",
@@ -136,34 +667,7 @@
               "RelativeToolTip": "GlobeTrek\\Content\\bootstrap-reboot.css.map",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAABoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-03-09T16:38:59.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Properties\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "GlobeTrek\\Properties\\AssemblyInfo.cs",
-              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Properties\\AssemblyInfo.cs",
-              "RelativeToolTip": "GlobeTrek\\Properties\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T16:38:49.845Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GlobeTrek - Web Deploy.pubxml",
-              "DocumentMoniker": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Properties\\PublishProfiles\\GlobeTrek - Web Deploy.pubxml",
-              "RelativeDocumentMoniker": "GlobeTrek\\Properties\\PublishProfiles\\GlobeTrek - Web Deploy.pubxml",
-              "ToolTip": "D:\\Code\\VisualStudio\\GlobeTrek\\GlobeTrek\\Properties\\PublishProfiles\\GlobeTrek - Web Deploy.pubxml",
-              "RelativeToolTip": "GlobeTrek\\Properties\\PublishProfiles\\GlobeTrek - Web Deploy.pubxml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2025-03-09T16:38:40.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T16:38:59.823Z"
             }
           ]
         }

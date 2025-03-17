@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TravelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TravelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="CustomerInfo">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="orderId" Type="int" Nullable="false" />
+    <Property Name="orderId" Type="int" />
     <Property Name="fullName" Type="nvarchar" MaxLength="255" />
     <Property Name="phone" Type="nvarchar" MaxLength="50" />
     <Property Name="email" Type="nvarchar" MaxLength="255" />
+    <Property Name="userId" Type="int" />
   </EntityType>
   <EntityType Name="Destinations">
     <Key>
@@ -68,16 +69,6 @@
     <Property Name="createdAt" Type="datetime" />
     <Property Name="updatedAt" Type="datetime" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="TourAvailabilities">
     <Key>
       <PropertyRef Name="id" />
@@ -129,19 +120,7 @@
     <Property Name="createdAt" Type="datetime" />
     <Property Name="updatedAt" Type="datetime" />
   </EntityType>
-  <Association Name="FK__CustomerI__order__7B5B524B">
-    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-    <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Orders">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="CustomerInfo">
-        <PropertyRef Name="orderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__FavoriteT__tourI__04E4BC85">
+  <Association Name="FK__FavoriteT__tourI__02FC7413">
     <End Role="Tours" Type="Self.Tours" Multiplicity="1" />
     <End Role="FavoriteTours" Type="Self.FavoriteTours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -153,7 +132,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__FavoriteT__userI__03F0984C">
+  <Association Name="FK__FavoriteT__userI__02084FDA">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="FavoriteTours" Type="Self.FavoriteTours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -165,7 +144,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__tourId__778AC167">
+  <Association Name="FK__Orders__tourId__04E4BC85">
     <End Role="Tours" Type="Self.Tours" Multiplicity="1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -177,7 +156,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__userId__76969D2E">
+  <Association Name="FK__Orders__userId__03F0984C">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -189,7 +168,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TourAvail__tourI__5AEE82B9">
+  <Association Name="FK__TourAvail__tourI__06CD04F7">
     <End Role="Tours" Type="Self.Tours" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -203,7 +182,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Tours__destinati__4E88ABD4">
+  <Association Name="FK__Tours__destinati__08B54D69">
     <End Role="Destinations" Type="Self.Destinations" Multiplicity="1" />
     <End Role="Tours" Type="Self.Tours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -215,7 +194,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Tours__tourTypeI__4D94879B">
+  <Association Name="FK__Tours__tourTypeI__07C12930">
     <End Role="TourTypes" Type="Self.TourTypes" Multiplicity="1" />
     <End Role="Tours" Type="Self.Tours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -224,6 +203,18 @@
       </Principal>
       <Dependent Role="Tours">
         <PropertyRef Name="tourTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerInfo_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CustomerInfo">
+        <PropertyRef Name="orderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -246,42 +237,41 @@
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Promotions" EntityType="Self.Promotions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Revenue" EntityType="Self.Revenue" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourAvailabilities" EntityType="Self.TourAvailabilities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tours" EntityType="Self.Tours" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourTypes" EntityType="Self.TourTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__CustomerI__order__7B5B524B" Association="Self.FK__CustomerI__order__7B5B524B">
-      <End Role="Orders" EntitySet="Orders" />
-      <End Role="CustomerInfo" EntitySet="CustomerInfo" />
-    </AssociationSet>
-    <AssociationSet Name="FK__FavoriteT__tourI__04E4BC85" Association="Self.FK__FavoriteT__tourI__04E4BC85">
+    <AssociationSet Name="FK__FavoriteT__tourI__02FC7413" Association="Self.FK__FavoriteT__tourI__02FC7413">
       <End Role="Tours" EntitySet="Tours" />
       <End Role="FavoriteTours" EntitySet="FavoriteTours" />
     </AssociationSet>
-    <AssociationSet Name="FK__FavoriteT__userI__03F0984C" Association="Self.FK__FavoriteT__userI__03F0984C">
+    <AssociationSet Name="FK__FavoriteT__userI__02084FDA" Association="Self.FK__FavoriteT__userI__02084FDA">
       <End Role="Users" EntitySet="Users" />
       <End Role="FavoriteTours" EntitySet="FavoriteTours" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__tourId__778AC167" Association="Self.FK__Orders__tourId__778AC167">
+    <AssociationSet Name="FK__Orders__tourId__04E4BC85" Association="Self.FK__Orders__tourId__04E4BC85">
       <End Role="Tours" EntitySet="Tours" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__userId__76969D2E" Association="Self.FK__Orders__userId__76969D2E">
+    <AssociationSet Name="FK__Orders__userId__03F0984C" Association="Self.FK__Orders__userId__03F0984C">
       <End Role="Users" EntitySet="Users" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__TourAvail__tourI__5AEE82B9" Association="Self.FK__TourAvail__tourI__5AEE82B9">
+    <AssociationSet Name="FK__TourAvail__tourI__06CD04F7" Association="Self.FK__TourAvail__tourI__06CD04F7">
       <End Role="Tours" EntitySet="Tours" />
       <End Role="TourAvailabilities" EntitySet="TourAvailabilities" />
     </AssociationSet>
-    <AssociationSet Name="FK__Tours__destinati__4E88ABD4" Association="Self.FK__Tours__destinati__4E88ABD4">
+    <AssociationSet Name="FK__Tours__destinati__08B54D69" Association="Self.FK__Tours__destinati__08B54D69">
       <End Role="Destinations" EntitySet="Destinations" />
       <End Role="Tours" EntitySet="Tours" />
     </AssociationSet>
-    <AssociationSet Name="FK__Tours__tourTypeI__4D94879B" Association="Self.FK__Tours__tourTypeI__4D94879B">
+    <AssociationSet Name="FK__Tours__tourTypeI__07C12930" Association="Self.FK__Tours__tourTypeI__07C12930">
       <End Role="TourTypes" EntitySet="TourTypes" />
       <End Role="Tours" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerInfo_Orders" Association="Self.FK_CustomerInfo_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="CustomerInfo" EntitySet="CustomerInfo" />
     </AssociationSet>
     <AssociationSet Name="FK_Promotion_Tour" Association="Self.FK_Promotion_Tour">
       <End Role="Tours" EntitySet="Tours" />

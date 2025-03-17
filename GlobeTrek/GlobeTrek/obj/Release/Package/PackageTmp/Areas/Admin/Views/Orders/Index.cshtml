@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GlobeTrek.Models.Order>
+﻿// Areas/Admin/Views/Orders/Index.cshtml
+@model IEnumerable<GlobeTrek.Models.Order>
 
 @{
     ViewBag.Title = "Quản Lý Đơn Hàng";
@@ -6,7 +7,6 @@
 }
 
 <div class="container-fluid py-4">
-    <!-- Tiêu đề -->
     <div class="row mb-4 align-items-center">
         <div class="col">
             <h2 class="text-primary mb-0 fw-bold">Quản Lý Đơn Hàng</h2>
@@ -16,51 +16,35 @@
 
     <div class="card shadow border-0">
         <div class="card-body p-4">
-            <!-- Bộ lọc tìm kiếm -->
             <div class="row g-3 mb-4">
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                        <input type="text"
-                               id="filterCreatedAt"
-                               class="form-control"
-                               placeholder="Ngày tạo (dd/MM/yyyy)">
+                        <input type="text" id="filterCreatedAt" class="form-control" placeholder="Ngày tạo (dd/MM/yyyy)">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
-                        <input type="text"
-                               id="filterBookingDate"
-                               class="form-control"
-                               placeholder="Ngày đặt (dd/MM/yyyy)">
+                        <input type="text" id="filterBookingDate" class="form-control" placeholder="Ngày đặt (dd/MM/yyyy)">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                        <input type="text"
-                               id="filterTour"
-                               class="form-control"
-                               placeholder="Tìm theo tour">
+                        <input type="text" id="filterTour" class="form-control" placeholder="Tìm theo tour">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text"
-                               id="filterUsername"
-                               class="form-control"
-                               placeholder="Tìm theo người dùng">
+                        <input type="text" id="filterUsername" class="form-control" placeholder="Tìm theo người dùng">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text"
-                               id="filterCustomerName"
-                               class="form-control"
-                               placeholder="Tìm theo khách hàng">
+                        <input type="text" id="filterCustomerName" class="form-control" placeholder="Tìm theo khách hàng">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -74,7 +58,6 @@
                 </div>
             </div>
 
-            <!-- Bảng dữ liệu -->
             <div class="table-responsive rounded">
                 <table id="orderTable" class="table table-hover table-bordered align-middle">
                     <thead class="table-light">
@@ -91,14 +74,15 @@
                             <th>@Html.DisplayNameFor(model => model.Tour.title)</th>
                             <th>@Html.DisplayNameFor(model => model.User.username)</th>
                             <th>@Html.DisplayNameFor(model => model.status)</th>
+                            <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            var customerInfo = item.CustomerInfoes.FirstOrDefault(); // Lấy thông tin khách hàng đầu tiên
+                            var customerInfo = item.CustomerInfoes.FirstOrDefault();
                             <tr>
-                                <td>@item.createdAt</td>
+                                <td>@(item.createdAt.HasValue ? item.createdAt.Value.ToString("dd/MM/yyyy HH:mm:ss") : "N/A")</td>
                                 <td>
                                     <div>Người lớn: <span class="fw-semibold text-primary">@String.Format("{0:N0}", item.adultPrice) Đ</span></div>
                                     <div>Trẻ em: <span class="fw-semibold text-primary">@String.Format("{0:N0}", item.childPrice) Đ</span></div>
@@ -107,9 +91,7 @@
                                     <div>Người lớn: <span class="fw-semibold">@item.adultCount</span></div>
                                     <div>Trẻ em: <span class="fw-semibold">@item.childCount</span></div>
                                 </td>
-                                <td class="fw-bold text-success">
-                                    @String.Format("{0:N0}", item.totalValue) Đ
-                                </td>
+                                <td class="fw-bold text-success">@String.Format("{0:N0}", item.totalValue) Đ</td>
                                 <td>@item.bookingDate.ToString("dd/MM/yyyy")</td>
                                 <td>@item.paymentMethod</td>
                                 <td>@(customerInfo != null ? customerInfo.fullName : "N/A")</td>
@@ -124,6 +106,29 @@
                                                                    "bg-danger")">
                                         @item.status
                                     </span>
+                                </td>
+                                <td>
+                                    @if (item.status == "pending" || item.status == "processing")
+                                    {
+                                        <select class="form-select status-select" data-order-id="@item.id">
+                                            <option value="" selected disabled>Chọn trạng thái</option>
+                                            @if (item.status == "pending")
+                                            {
+                                                <option value="processing">Processing</option>
+                                                <option value="paid">Paid</option>
+                                                <option value="canceled">Canceled</option>
+                                            }
+                                            else if (item.status == "processing")
+                                            {
+                                                <option value="paid">Paid</option>
+                                                <option value="canceled">Canceled</option>
+                                            }
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Không thể chỉnh sửa</span>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -141,7 +146,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-        /* Tùy chỉnh phân trang */
         .dataTables_paginate .pagination {
             justify-content: center;
             margin-top: 20px;
@@ -180,9 +184,7 @@
             cursor: not-allowed;
         }
 
-        /* Tinh chỉnh khoảng cách và layout */
-        .dataTables_wrapper .dataTables_length,
-        .dataTables_wrapper .dataTables_filter {
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
             margin-bottom: 15px;
         }
 
@@ -201,41 +203,67 @@
                     search: '<i class="fas fa-search me-2"></i>Tìm kiếm:',
                     lengthMenu: 'Hiển thị _MENU_ đơn hàng/trang',
                     info: 'Hiển thị _START_ - _END_ / _TOTAL_ đơn hàng',
-                    paginate: {
-                        previous: '<i class="fas fa-chevron-left"></i>',
-                        next: '<i class="fas fa-chevron-right"></i>'
-                    },
+                    paginate: { previous: '<i class="fas fa-chevron-left"></i>', next: '<i class="fas fa-chevron-right"></i>' },
                     emptyTable: 'Chưa có dữ liệu đơn hàng'
                 },
                 pagingType: 'simple_numbers',
                 renderer: 'bootstrap',
-                dom: '<"row align-items-center"<"col-md-6"l><"col-md-6"f>>t<"row"<"col-md-6"i><"col-md-6"p>>'
+                dom: '<"row align-items-center"<"col-md-6"l><"col-md-6"f>>t<"row"<"col-md-6"i><"col-md-6"p>>',
+                drawCallback: function () {
+                    $('.status-select').off('change').on('change', function () {
+                        var orderId = $(this).data('order-id');
+                        var newStatus = $(this).val(); // Sửa từ 'status' thành 'newStatus' để khớp với Controller
+                        var $badge = $(this).closest('tr').find('.badge');
+
+                        console.log('Changing status for Order ID:', orderId, 'to:', newStatus); // Debug client
+
+                        if (newStatus) {
+                            $.ajax({
+                                url: '@Url.Action("UpdateStatus", "Orders", new { area = "Admin" })',
+                                type: 'POST',
+                                data: { id: orderId, newStatus: newStatus }, // Sửa 'status' thành 'newStatus'
+                                success: function (response) {
+                                    console.log('AJAX Success:', response);
+                                    if (response.success) {
+                                        $badge.text(newStatus);
+                                        $badge.removeClass('bg-warning bg-info bg-success bg-danger');
+                                        if (newStatus === 'paid') $badge.addClass('bg-success');
+                                        else if (newStatus === 'pending') $badge.addClass('bg-warning');
+                                        else if (newStatus === 'processing') $badge.addClass('bg-info');
+                                        else if (newStatus === 'canceled') $badge.addClass('bg-danger');
+
+                                        if (newStatus === 'paid' || newStatus === 'canceled') {
+                                            $(this).replaceWith('<span class="text-muted">Không thể chỉnh sửa</span>');
+                                        } else {
+                                            var $select = $(this);
+                                            $select.empty();
+                                            $select.append('<option value="" selected disabled>Chọn trạng thái</option>');
+                                            $select.append('<option value="paid">Paid</option>');
+                                            $select.append('<option value="canceled">Canceled</option>');
+                                        }
+                                        alert(response.message);
+                                    } else {
+                                        alert(response.message);
+                                        $(this).val('');
+                                    }
+                                }.bind(this),
+                                error: function (xhr, status, error) {
+                                    console.log('AJAX Error:', xhr.status, error, xhr.responseText);
+                                    alert('Lỗi: ' + xhr.status + ' - ' + error + '\nResponse: ' + xhr.responseText);
+                                    $(this).val('');
+                                }
+                            });
+                        }
+                    });
+                }
             });
 
-            // Bộ lọc
-            $('#filterCreatedAt').on('keyup', function () {
-                table.column(0).search(this.value).draw();
-            });
-
-            $('#filterBookingDate').on('keyup', function () {
-                table.column(4).search(this.value).draw();
-            });
-
-            $('#filterTour').on('keyup', function () {
-                table.column(9).search(this.value).draw();
-            });
-
-            $('#filterUsername').on('keyup', function () {
-                table.column(10).search(this.value).draw();
-            });
-
-            $('#filterCustomerName').on('keyup', function () {
-                table.column(6).search(this.value).draw();
-            });
-
-            $('#filterStatus').on('change', function () {
-                table.column(11).search(this.value).draw();
-            });
+            $('#filterCreatedAt').on('keyup', function () { table.column(0).search(this.value).draw(); });
+            $('#filterBookingDate').on('keyup', function () { table.column(4).search(this.value).draw(); });
+            $('#filterTour').on('keyup', function () { table.column(9).search(this.value).draw(); });
+            $('#filterUsername').on('keyup', function () { table.column(10).search(this.value).draw(); });
+            $('#filterCustomerName').on('keyup', function () { table.column(6).search(this.value).draw(); });
+            $('#filterStatus').on('change', function () { table.column(11).search(this.value).draw(); });
         });
     </script>
 }

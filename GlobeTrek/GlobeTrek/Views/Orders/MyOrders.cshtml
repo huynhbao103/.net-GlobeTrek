@@ -88,9 +88,7 @@
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <a href="@Url.Action("OrderDetails", "Orders", new { id = order.id })" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i> Chi tiết
-                                    </a>
+                                
                                     @if (order.status == "pending")
                                     {
                                         <button class="btn btn-sm btn-outline-danger cancel-order" data-order-id="@order.id">

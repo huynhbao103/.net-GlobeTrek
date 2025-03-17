@@ -24,6 +24,7 @@ namespace GlobeTrek.Controllers
         private int? GetUserIdFromSession()
         {
             var userId = Session["UserID"];
+            System.Diagnostics.Debug.WriteLine($"Session[UserID]: {userId ?? "null"}"); // In ra Output Window
             if (userId != null && int.TryParse(userId.ToString(), out int result))
             {
                 return result;
@@ -32,7 +33,7 @@ namespace GlobeTrek.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateOrder(int? tourId)
+        public ActionResult CreateOrder(int? tourId, int? userId = null)
         {
             try
             {
@@ -41,15 +42,36 @@ namespace GlobeTrek.Controllers
                     return Json(new { success = false, message = "TourId không hợp lệ." });
                 }
 
+                userId = userId ?? GetUserIdFromSession();
+
                 var model = new GlobeTrek.Models.Order
                 {
-                    userId = GetUserIdFromSession(),
+                    userId = userId,
                     tourId = tourId.Value,
                     orderDate = DateTime.Now,
                     bookingDate = DateTime.Now,
                     status = "pending",
-                    paymentMethod = "pointer-wallet" // Giá trị mặc định
+                    paymentMethod = "pointer-wallet"
                 };
+
+                if (userId.HasValue)
+                {
+                    var customerInfo = _context.CustomerInfoes.FirstOrDefault(ci => ci.userId == userId);
+                    System.Diagnostics.Debug.WriteLine($"UserId: {userId}, CustomerInfo found: {customerInfo != null}");
+                    if (customerInfo != null)
+                    {
+                        ViewBag.HasCustomerInfo = true;
+                        ViewBag.CustomerInfo = customerInfo;
+                    }
+                    else
+                    {
+                        ViewBag.HasCustomerInfo = false;
+                    }
+                }
+                else
+                {
+                    ViewBag.HasCustomerInfo = false;
+                }
 
                 return View(model);
             }
@@ -171,26 +193,38 @@ namespace GlobeTrek.Controllers
                         CustomerInfoes = new HashSet<CustomerInfo>()
                     };
 
-                    order.CustomerInfoes.Add(new CustomerInfo
+                    CustomerInfo customerInfo = null;
+                    if (userId.HasValue)
                     {
-                        fullName = customerName,
-                        email = customerEmail,
-                        phone = customerPhone
-                    });
-
-                    _context.Orders.Add(order);
-                    await _context.SaveChangesAsync();
-
-                    if (!order.CustomerInfoes.Any() || order.CustomerInfoes.First().id == 0)
-                    {
-                        transaction.Rollback();
-                        TempData["Error"] = "Không thể lưu thông tin khách hàng. Đơn hàng không được tạo.";
-                        return RedirectToAction("Index", "getAllTour");
+                        customerInfo = _context.CustomerInfoes.FirstOrDefault(ci => ci.userId == userId);
                     }
 
+                    if (customerInfo == null)
+                    {
+                        // Tạo mới CustomerInfo
+                        customerInfo = new CustomerInfo
+                        {
+                            userId = userId, // Gắn userId nếu có
+                            fullName = customerName,
+                            email = customerEmail,
+                            phone = customerPhone
+                        };
+                        _context.CustomerInfoes.Add(customerInfo);
+                    }
+                    else
+                    {
+                        // Cập nhật CustomerInfo nếu đã tồn tại
+                        customerInfo.fullName = customerName;
+                        customerInfo.email = customerEmail;
+                        customerInfo.phone = customerPhone;
+                        _context.Entry(customerInfo).State = EntityState.Modified;
+                    }
+
+                    order.CustomerInfoes.Add(customerInfo);
+                    _context.Orders.Add(order);
+                    await _context.SaveChangesAsync();
                     transaction.Commit();
 
-                    TempData["Success"] = $"Đơn hàng #{order.id} đã được tạo thành công!";
 
                     if (paymentMethod == "paypal")
                     {

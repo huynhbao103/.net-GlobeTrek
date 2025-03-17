@@ -31,7 +31,6 @@ namespace GlobeTrek.Models
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<Revenue> Revenues { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TourAvailability> TourAvailabilities { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<TourType> TourTypes { get; set; }

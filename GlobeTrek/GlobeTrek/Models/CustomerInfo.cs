@@ -15,10 +15,11 @@ namespace GlobeTrek.Models
     public partial class CustomerInfo
     {
         public int id { get; set; }
-        public int orderId { get; set; }
+        public Nullable<int> orderId { get; set; }
         public string fullName { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
+        public Nullable<int> userId { get; set; }
     
         public virtual Order Order { get; set; }
     }
